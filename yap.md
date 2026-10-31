@@ -1,3 +1,7 @@
+> Rewrite note: the packaged daemon is now x86-64 assembly. The original Rust
+> implementation is retained for comparison. See README.md and bench/RESULTS.md
+> for current build instructions, tests and measured performance.
+
 # temporion
 
 Temperature fetcher extension for GNOME — because freon still lags.
@@ -20,7 +24,7 @@ that's the jank.
 
 Temporion splits the work:
 
-- **`temporiond`** — a small Rust daemon that reads every sensor on its own
+- **`temporiond`** — a small x86-64 assembly daemon that reads every sensor on its own
   timer, in its own process, and streams one line of temperatures to stdout.
 - **the extension** — ~200 lines of GJS (unavoidable: extensions must have a
   JavaScript entry point, there is no Rust runtime inside gnome-shell) that
@@ -35,8 +39,8 @@ Temporion splits the work:
 | GPU | `libnvidia-ml.so.1` via `dlopen` (NVML) | no `nvidia-smi` spawn |
 | Disks | `/sys/class/hwmon/*/` where `name == nvme`, `Composite` label | no `smartctl`, no root |
 
-The daemon has **zero external crates** — std only, plus a tiny hand-written
-NVML FFI binding — so it is small and fast, and the `Cargo.lock` is trivial.
+The production daemon is assembly linked to libc; NVML is loaded dynamically.
+The original Rust baseline has zero external crates and is retained unchanged.
 
 **Battery note:** on this Optimus laptop the RTX 4050 is often
 runtime-suspended. Querying NVML would force it back on, so by default the
@@ -50,7 +54,7 @@ Add the extension package to your system (it pulls the daemon in automatically):
 
 ```nix
 # flake.nix inputs
-temporion.url = "github:MasterZack69/temporion";
+temporion.url = "github:MasterZack69/temporion-x86";
 
 # configuration.nix (with inputs in specialArgs)
 environment.systemPackages = [ inputs.temporion.packages.${pkgs.system}.default ];
@@ -63,7 +67,7 @@ pick it up immediately.
 ### Try the daemon without installing
 
 ```sh
-nix run github:MasterZack69/temporion
+nix run github:MasterZack69/temporion-x86
 # prints: <cpu> <gpu> <disk0> <disk1>  e.g.  61 52 44 39
 # (a field is "-" when that sensor is unavailable)
 ```
@@ -84,9 +88,9 @@ Panel colour thresholds and position are constants at the top of
 
 ```sh
 nix develop          # cargo, rustc, clippy, rustfmt, gjs, node
-cargo run            # run the daemon, watch the stream
-cargo clippy         # lints
-cargo fmt            # format
+make && ./build/temporiond  # assembly daemon
+make test differential     # assembly/Rust correctness checks
+cargo clippy               # retained Rust baseline lints
 ```
 
 Build just the daemon or the packaged extension:
@@ -99,7 +103,10 @@ nix build .#temporion
 ## Layout
 
 ```
-src/
+asm/
+  temporiond.S         production x86-64 daemon
+Makefile               assembly build, tests and benchmarks
+src/                   unchanged Rust reference
   main.rs              loop + stdout streaming
   sensors/
     mod.rs             discovery + sampling

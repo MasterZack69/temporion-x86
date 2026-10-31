@@ -1,0 +1,310 @@
+{
+  "source": "/data/raw/temporion-benchmark.json",
+  "metadata": {
+    "cpu": 0,
+    "machine": "x86_64",
+    "platform": "Linux-6.18.56-x86_64-with-glibc2.34",
+    "rust": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+    "gcc": "cc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5)",
+    "head": "bdb85c02bd741babd754a07b526792ef9f5490c4",
+    "seed": 42,
+    "fixture": "AMD Tctl + two NVMe regular files + runtime_status; fake NVML; warm page cache; LD_PRELOAD maps /sys; one pinned virtual CPU",
+    "limitations": "No real hwmon/NVML hardware, power, or compositor measurements. Startup includes process/loader overhead. Shared virtual host, not bare metal.",
+    "source_sha256": {
+      "asm/temporiond.S": "c110af1a41d0c6c9ce516af4bda03c8babf096a933b3c995add2e8d2a218bd9e",
+      "bench/assembly.c": "06a8e036253e2bccefecc5ae52407865ffdbea03212d0997dc96b18188f245c6",
+      "bench/rust.rs": "a425e88ff8fc56d654c3c562812ba02f8ae1540aa144a57d06ab6391716af564",
+      "tests/redirect.c": "fbd23c57a5f179a98f87205cdda7d6897c295820e7a42193490890bd5e96620b",
+      "tests/nvml.c": "3c779dfbd4119213219ac32c415a3da5448b65398ac2671b9a5be6f30dcb1ad1",
+      "src/main.rs": "b40cdc45e6fe944826ced3cc7b09fec37f4aeec5a0f313dac36b7209a4dbe2cf",
+      "src/sensors/cpu.rs": "c1ce5574676dd20d7774689952957af38d4618e8865aa8bf22bebbe020fee4c2",
+      "src/sensors/disk.rs": "b3e61ddda579379c2cc561bcf9b1ce2646c19754cb818e0cde8bd463b7365a39",
+      "src/sensors/gpu.rs": "72fe77ae449f24470dc9cf967c8d86a409613926292cdd86ca79f2a99bf0c6d6",
+      "src/sensors/hwmon.rs": "6144569fcc036bdb41f6144ecdbced09b2765f940d0d7c21f8872073ea978b0e",
+      "src/sensors/mod.rs": "f32b78852ed790f6d1b71ff96328964caffbbcf82d100f53f9b177a4eb319aff"
+    },
+    "binary_sha256": {
+      "build/temporiond": "0e38c48bdbc5bcff71dc0ec3a5b687d20e3ee8ab3147df13452ec6ea717bc63d",
+      "build/bench-assembly": "907889d01397ac3f59fbc73600ad38d18d89501f3c72e75886c948fd583a2e0e",
+      "build/bench-rust-size": "77581c68a2cbb3605650b5aa66fd1013962c5e627b264ad336cfc9f0e1347978",
+      "build/bench-rust-speed": "1151d72bcfb7104a4b78e8d59e3a9f834171fc131bfba626b80688068e74fcb4",
+      "build/temporiond-rust-speed": "4339c80aff020f744ac42e6b789763c0985b23ea5bea2454c60769398788be3c",
+      "target/release/temporiond": "8cbddf3b13ece731dc8173ac12025b82fe43cb5aa670210907d350ecfa2e09e9",
+      "build/redirect.so": "6b23b98987bf9915b14ef697304a723effb40445663c5f5420fbd6178780ad80",
+      "build/libnvidia-ml.so.1": "79995ebdde07dcc46d1fc735651ff55ca1d460f6edbc08144dbe4ec4cb753a90"
+    }
+  },
+  "grain": "One process trial per version/GPU state/mode/repeat",
+  "rows": 297,
+  "nulls": "cpu_ns and checksum intentionally absent in startup observations",
+  "summary": [
+    {
+      "gpu": "active",
+      "mode": "sample",
+      "version": "assembly",
+      "n": 11,
+      "median_ns": 6955.5545,
+      "p10_ns": 6508.831916666667,
+      "p90_ns": 8156.284333333333
+    },
+    {
+      "gpu": "active",
+      "mode": "sample",
+      "version": "rust-size",
+      "n": 11,
+      "median_ns": 7818.58725,
+      "p10_ns": 7215.858666666667,
+      "p90_ns": 8228.398666666666
+    },
+    {
+      "gpu": "active",
+      "mode": "sample",
+      "version": "rust-speed",
+      "n": 11,
+      "median_ns": 7770.473583333333,
+      "p10_ns": 7216.598166666667,
+      "p90_ns": 8182.973083333333
+    },
+    {
+      "gpu": "active",
+      "mode": "startup",
+      "version": "assembly",
+      "n": 55,
+      "median_ns": 536300.0,
+      "p10_ns": 525667.8,
+      "p90_ns": 562052.4
+    },
+    {
+      "gpu": "active",
+      "mode": "startup",
+      "version": "rust-size",
+      "n": 55,
+      "median_ns": 667745.0,
+      "p10_ns": 656285.0,
+      "p90_ns": 689495.6
+    },
+    {
+      "gpu": "active",
+      "mode": "startup",
+      "version": "rust-speed",
+      "n": 55,
+      "median_ns": 667084.0,
+      "p10_ns": 655063.6,
+      "p90_ns": 689009.6
+    },
+    {
+      "gpu": "active",
+      "mode": "write",
+      "version": "assembly",
+      "n": 11,
+      "median_ns": 6609.75775,
+      "p10_ns": 6578.432,
+      "p90_ns": 7432.117333333334
+    },
+    {
+      "gpu": "active",
+      "mode": "write",
+      "version": "rust-size",
+      "n": 11,
+      "median_ns": 7518.611083333333,
+      "p10_ns": 7297.503833333333,
+      "p90_ns": 8324.84425
+    },
+    {
+      "gpu": "active",
+      "mode": "write",
+      "version": "rust-speed",
+      "n": 11,
+      "median_ns": 7295.765416666667,
+      "p10_ns": 7223.9115833333335,
+      "p90_ns": 8585.19325
+    },
+    {
+      "gpu": "suspended",
+      "mode": "sample",
+      "version": "assembly",
+      "n": 11,
+      "median_ns": 6425.5715,
+      "p10_ns": 6409.315916666666,
+      "p90_ns": 6456.074083333333
+    },
+    {
+      "gpu": "suspended",
+      "mode": "sample",
+      "version": "rust-size",
+      "n": 11,
+      "median_ns": 7078.189333333334,
+      "p10_ns": 7059.70275,
+      "p90_ns": 7146.559416666667
+    },
+    {
+      "gpu": "suspended",
+      "mode": "sample",
+      "version": "rust-speed",
+      "n": 11,
+      "median_ns": 7072.6970833333335,
+      "p10_ns": 7042.337583333333,
+      "p90_ns": 7149.847333333333
+    },
+    {
+      "gpu": "suspended",
+      "mode": "write",
+      "version": "assembly",
+      "n": 11,
+      "median_ns": 6635.13425,
+      "p10_ns": 6581.16225,
+      "p90_ns": 7730.830833333333
+    },
+    {
+      "gpu": "suspended",
+      "mode": "write",
+      "version": "rust-size",
+      "n": 11,
+      "median_ns": 7334.092666666666,
+      "p10_ns": 7211.10575,
+      "p90_ns": 7888.1775
+    },
+    {
+      "gpu": "suspended",
+      "mode": "write",
+      "version": "rust-speed",
+      "n": 11,
+      "median_ns": 7406.974666666667,
+      "p10_ns": 7250.165583333333,
+      "p90_ns": 8055.111916666667
+    }
+  ],
+  "ratios": [
+    {
+      "gpu": "active",
+      "mode": "sample",
+      "baseline": "rust-size",
+      "paired_median_speedup": 1.1086257502194166,
+      "bootstrap95": [
+        1.063128774529829,
+        1.1274515416467819
+      ],
+      "wins": 9,
+      "pairs": 11
+    },
+    {
+      "gpu": "active",
+      "mode": "sample",
+      "baseline": "rust-speed",
+      "paired_median_speedup": 1.0929195748040887,
+      "bootstrap95": [
+        1.0370425850752665,
+        1.1095352571371084
+      ],
+      "wins": 10,
+      "pairs": 11
+    },
+    {
+      "gpu": "active",
+      "mode": "startup",
+      "baseline": "rust-size",
+      "paired_median_speedup": 1.2431878475258558,
+      "bootstrap95": [
+        1.2354503532691294,
+        1.25461255296512
+      ],
+      "wins": 53,
+      "pairs": 55
+    },
+    {
+      "gpu": "active",
+      "mode": "startup",
+      "baseline": "rust-speed",
+      "paired_median_speedup": 1.244427480048418,
+      "bootstrap95": [
+        1.2398609501738123,
+        1.24884071379377
+      ],
+      "wins": 53,
+      "pairs": 55
+    },
+    {
+      "gpu": "active",
+      "mode": "write",
+      "baseline": "rust-size",
+      "paired_median_speedup": 1.1111172464806203,
+      "bootstrap95": [
+        1.1018391507895864,
+        1.1446169740172791
+      ],
+      "wins": 11,
+      "pairs": 11
+    },
+    {
+      "gpu": "active",
+      "mode": "write",
+      "baseline": "rust-speed",
+      "paired_median_speedup": 1.1043288061859455,
+      "bootstrap95": [
+        1.0919726318242138,
+        1.1137490986878
+      ],
+      "wins": 10,
+      "pairs": 11
+    },
+    {
+      "gpu": "suspended",
+      "mode": "sample",
+      "baseline": "rust-size",
+      "paired_median_speedup": 1.1031363177591793,
+      "bootstrap95": [
+        1.0981598978280696,
+        1.108105798982017
+      ],
+      "wins": 11,
+      "pairs": 11
+    },
+    {
+      "gpu": "suspended",
+      "mode": "sample",
+      "baseline": "rust-speed",
+      "paired_median_speedup": 1.1020428584220592,
+      "bootstrap95": [
+        1.0980063796659956,
+        1.1069253780774384
+      ],
+      "wins": 11,
+      "pairs": 11
+    },
+    {
+      "gpu": "suspended",
+      "mode": "write",
+      "baseline": "rust-size",
+      "paired_median_speedup": 1.0957191869870706,
+      "bootstrap95": [
+        1.0801537117174032,
+        1.1199753942160187
+      ],
+      "wins": 10,
+      "pairs": 11
+    },
+    {
+      "gpu": "suspended",
+      "mode": "write",
+      "baseline": "rust-speed",
+      "paired_median_speedup": 1.0991439014212225,
+      "bootstrap95": [
+        1.0839008905237781,
+        1.1298222311213595
+      ],
+      "wins": 10,
+      "pairs": 11
+    }
+  ],
+  "comparison_plan": [
+    {
+      "question": "Does the rewrite reduce daemon overhead versus both Rust profiles?",
+      "population": "Fixture sensor tree; 11 paired steady-state trials, 12000 samples/trial; 55 paired startup trials",
+      "unit": "wall ns/sample (steady) and wall ns/process (startup)",
+      "derivation": "median wall_ns/samples, paired baseline/assembly ratios; bootstrap median paired ratio",
+      "finding": "Use all workload cuts; no real-hardware claim",
+      "delivery": "chart",
+      "reason": "Four steady-state workload cuts and three implementations; startup separate in prose due to different timing scope"
+    }
+  ]
+}

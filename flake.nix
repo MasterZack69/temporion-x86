@@ -10,7 +10,7 @@
     { self, nixpkgs, systems, ... }:
     let
       uuid = "temporion@masterzack69";
-      eachSystem = nixpkgs.lib.genAttrs (import systems);
+      eachSystem = nixpkgs.lib.genAttrs (builtins.filter (system: system == "x86_64-linux") (import systems));
       pkgsFor = system: import nixpkgs { inherit system; };
     in
     {
@@ -19,18 +19,25 @@
         let
           pkgs = pkgsFor system;
 
-          # The Rust daemon: all sensor logic, zero external crates.
-          temporiond = pkgs.rustPlatform.buildRustPackage {
+          # Native x86-64 assembly daemon. Rust remains as a reference baseline.
+          temporiond = pkgs.stdenv.mkDerivation {
             pname = "temporiond";
-            version = "0.1.0";
+            version = "0.2.0";
             src = ./.;
-            cargoLock.lockFile = ./Cargo.lock;
-            doCheck = false;
+            nativeBuildInputs = [ pkgs.python3 ];
+            dontConfigure = true;
+            doCheck = true;
+            checkPhase = "make test";
+            installPhase = ''
+              runHook preInstall
+              make install PREFIX="$out"
+              runHook postInstall
+            '';
             meta = {
-              description = "Zero-dependency daemon streaming CPU/GPU/NVMe temperatures";
-              homepage = "https://github.com/MasterZack69/temporion";
+              description = "x86-64 assembly daemon streaming CPU/GPU/NVMe temperatures";
+              homepage = "https://github.com/MasterZack69/temporion-x86";
               license = pkgs.lib.licenses.agpl3Only;
-              platforms = pkgs.lib.platforms.linux;
+              platforms = [ "x86_64-linux" ];
               mainProgram = "temporiond";
             };
           };
@@ -92,6 +99,9 @@
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
+              gnumake
+              gcc
+              python3
               cargo
               rustc
               rustfmt
