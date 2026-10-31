@@ -30,7 +30,7 @@ static void trim(const char *raw, size_t len, const char *expected) {
     assert(v.p && v.n == strlen(expected) && !memcmp(v.p, expected, v.n));
 }
 static void attr_test(const void *raw, size_t n, const char *expected) {
-    char path[] = "/tmp/temporion-unit-XXXXXX";
+    char path[] = "/tmp/temporion-x86-unit-XXXXXX";
     int fd = mkstemp(path); assert(fd >= 0);
     assert(write(fd, raw, n) == (ssize_t)n); close(fd);
     View v = read_attr(path); unlink(path);
@@ -62,9 +62,9 @@ int main(void) {
     char buf[257]; memset(buf,'x',sizeof(buf));
     buf[256]=0; attr_test(buf,256,buf); attr_test(buf,257,NULL);
     attr_test(" 61000\n",7,"61000"); attr_test("\xff",1,NULL);
-    char path[]="/tmp/temporion-degree-XXXXXX"; int fd=mkstemp(path); assert(fd>=0);
+    char path[]="/tmp/temporion-x86-degree-XXXXXX"; int fd=mkstemp(path); assert(fd>=0);
     assert(write(fd,"-12500\n",7)==7); close(fd);
     Parsed p=read_degree(path); assert(p.ok && (int32_t)p.value==-12); unlink(path);
-    assert(!read_attr("/no/such/temporion/file").p);
+    assert(!read_attr("/no/such/temporion-x86/file").p);
     puts("unit: UTF-8/trim, checked parsers, 100000 format cases, bounded reads: PASS");
 }

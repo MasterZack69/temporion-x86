@@ -1,4 +1,4 @@
-name: Daemon correctness
+name: Temporion x86 correctness
 
 on:
   push:
@@ -30,4 +30,4 @@ jobs:
     - name: Build benchmark executables and speed-optimized Rust
       run: make bench-build
     - name: Check speed-optimized Rust parity
-      run: TEMPORION_RUST_BIN="$PWD/build/temporiond-rust-speed" python3 tests/integration.py
+      run: TEMPORION_X86_RUST_BIN="$PWD/build/temporion-x86d-rust-speed" python3 tests/integration.py

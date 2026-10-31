@@ -1,8 +1,7 @@
-// Temporion — thin GNOME Shell frontend.
+// Temporion x86 — thin GNOME Shell frontend.
 //
 // This file exists only because GNOME Shell extensions must have a GJS entry
-// point; there is no Rust runtime inside gnome-shell. All sensor logic lives in
-// the `temporiond` Rust daemon. Here we simply launch it and read its stdout
+// point. All sensor logic lives in the `temporion-x86d` assembly daemon. Here we simply launch it and read its stdout
 // lines *asynchronously*, so the compositor main loop never does blocking I/O
 // (which is exactly what makes freon stutter).
 
@@ -16,7 +15,7 @@ import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 
 // Replaced with an absolute /nix/store path by the flake at build time.
-const DAEMON_PATH = '@TEMPORIOND@';
+const DAEMON_PATH = '@TEMPORION_X86D@';
 
 // Index in the panel's left box: 0 is the workspace indicator, so 1 puts us
 // right after "the workspace thing".
@@ -39,13 +38,13 @@ function tagFor(index) {
     return `D${index - 2}`;
 }
 
-const TemporionIndicator = GObject.registerClass(
-class TemporionIndicator extends PanelMenu.Button {
+const TemporionX86Indicator = GObject.registerClass({GTypeName: 'TemporionX86Indicator'},
+class TemporionX86Indicator extends PanelMenu.Button {
     _init() {
-        super._init(0.0, 'Temporion', true /* dontCreateMenu */);
+        super._init(0.0, 'Temporion x86', true /* dontCreateMenu */);
         this.reactive = false; // passive readout, no click menu
 
-        this._box = new St.BoxLayout({style_class: 'temporion-box'});
+        this._box = new St.BoxLayout({style_class: 'temporion-x86-box'});
         this.add_child(this._box);
 
         this._items = []; // { value: St.Label }
@@ -56,14 +55,14 @@ class TemporionIndicator extends PanelMenu.Button {
         this._box.destroy_all_children();
         this._items = [];
         for (let i = 0; i < count; i++) {
-            const item = new St.BoxLayout({style_class: 'temporion-item'});
+            const item = new St.BoxLayout({style_class: 'temporion-x86-item'});
             item.add_child(new St.Label({
-                style_class: 'temporion-tag',
+                style_class: 'temporion-x86-tag',
                 text: tagFor(i),
                 y_align: 2, // CENTER
             }));
             const value = new St.Label({
-                style_class: 'temporion-value',
+                style_class: 'temporion-x86-value',
                 text: '–',
                 y_align: 2, // CENTER
             });
@@ -99,10 +98,10 @@ class TemporionIndicator extends PanelMenu.Button {
     }
 });
 
-export default class TemporionExtension extends Extension {
+export default class TemporionX86Extension extends Extension {
     enable() {
-        this._indicator = new TemporionIndicator();
-        Main.panel.addToStatusArea('temporion', this._indicator, PANEL_POSITION, 'left');
+        this._indicator = new TemporionX86Indicator();
+        Main.panel.addToStatusArea('temporion-x86', this._indicator, PANEL_POSITION, 'left');
 
         this._cancellable = new Gio.Cancellable();
         this._restartId = 0;
@@ -137,8 +136,8 @@ export default class TemporionExtension extends Extension {
         if (!DAEMON_PATH.startsWith('@'))
             return [DAEMON_PATH];
         // Manual (non-Nix) install: fall back to PATH lookup.
-        const found = GLib.find_program_in_path('temporiond');
-        return [found ?? 'temporiond'];
+        const found = GLib.find_program_in_path('temporion-x86d');
+        return [found ?? 'temporion-x86d'];
     }
 
     _startDaemon() {
@@ -149,7 +148,7 @@ export default class TemporionExtension extends Extension {
             });
             this._proc.init(this._cancellable);
         } catch (e) {
-            logError(e, 'Temporion: failed to launch temporiond');
+            logError(e, 'Temporion x86: failed to launch temporion-x86d');
             this._scheduleRestart();
             return;
         }

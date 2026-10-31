@@ -7,8 +7,8 @@ import subprocess
 import tempfile
 
 REPO = pathlib.Path(__file__).resolve().parents[1]
-ASM = REPO / 'build/temporiond'
-RUST = pathlib.Path(os.environ.get('TEMPORION_RUST_BIN', REPO / 'target/release/temporiond'))
+ASM = REPO / 'build/temporion-x86d'
+RUST = pathlib.Path(os.environ.get('TEMPORION_X86_RUST_BIN', REPO / 'target/release/temporion-x86d-rust-reference'))
 
 def put(root, name, value):
     p = root / name
@@ -35,11 +35,18 @@ def fixture(root):
     put(root, 'bus/pci/devices/0000:01:00.0/power/runtime_status', 'suspended\n')
 
 def start(binary, root, **extra):
-    env = dict(os.environ, TEMPORION_TEST_ROOT=str(root),
+    env = dict(os.environ, TEMPORION_X86_TEST_ROOT=str(root),
                LD_PRELOAD=str(REPO / 'build/redirect.so'),
-               LD_LIBRARY_PATH=str(REPO / 'build'), TEMPORION_INTERVAL_MS='100',
-               TEMPORION_TEST_NVML_LOG=str(root / 'nvml.log'))
+               LD_LIBRARY_PATH=str(REPO / 'build'), TEMPORION_X86_INTERVAL_MS='100',
+               TEMPORION_X86_TEST_NVML_LOG=str(root / 'nvml.log'))
+    # Original Rust sources deliberately keep upstream env keys; translate only
+    # for the explicitly named reference binary, never in production assembly.
+    env.pop('TEMPORION_X86_GPU_ALWAYS', None)
     env.pop('TEMPORION_GPU_ALWAYS', None)
+    if binary != ASM:
+        env['TEMPORION_INTERVAL_MS'] = env.pop('TEMPORION_X86_INTERVAL_MS')
+        if 'TEMPORION_X86_GPU_ALWAYS' in extra:
+            extra['TEMPORION_GPU_ALWAYS'] = extra.pop('TEMPORION_X86_GPU_ALWAYS')
     env.update(extra)
     return subprocess.Popen([str(binary)], env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -67,7 +74,7 @@ def run(binary):
         cpu = root / 'class/hwmon/hwmon9/temp2_input'
         status = root / 'bus/pci/devices/0000:01:00.0/power/runtime_status'
         log = root / 'nvml.log'
-        p = start(binary, root, TEMPORION_TEST_SHORT_READS='1')
+        p = start(binary, root, TEMPORION_X86_TEST_SHORT_READS='1')
         try:
             assert line(p) == '61 - 39 44'; count += 1
             assert not log.exists(), 'suspended GPU was queried'
@@ -104,12 +111,12 @@ def run(binary):
         assert 'disks=2' in summary and 'disk0 = nvme2 (Disk 2)' in summary
         assert 'disk1 = nvme10 (Disk 10)' in summary
         log.unlink()
-        p = start(binary, root, TEMPORION_GPU_ALWAYS='1')
+        p = start(binary, root, TEMPORION_X86_GPU_ALWAYS='1')
         try: assert line(p) == '72 52 39 44'; count += 1
         finally: finish(p)
         log.unlink()
         status.write_text('active\n')
-        p = start(binary, root, TEMPORION_TEST_NVML_FAIL='1')
+        p = start(binary, root, TEMPORION_X86_TEST_NVML_FAIL='1')
         try:
             assert line(p) == '72 - 39 44'
             assert line(p) == '72 - 39 44'
@@ -119,7 +126,7 @@ def run(binary):
         for failure, expected in [('handle', ['init', 'handle', 'init', 'handle']),
                                   ('temperature', ['init', 'handle', 'temperature', 'temperature'])]:
             log.unlink(missing_ok=True)
-            p = start(binary, root, TEMPORION_TEST_NVML_FAIL=failure)
+            p = start(binary, root, TEMPORION_X86_TEST_NVML_FAIL=failure)
             try:
                 assert line(p) == '72 - 39 44'
                 assert line(p) == '72 - 39 44'
@@ -131,14 +138,14 @@ def run(binary):
             assert line(p) == '72 - 39 44'; count += 1
             assert not log.exists(), 'missing symbol must prevent initialization'
         finally: finish(p)
-        p = start(binary, root, TEMPORION_TEST_NO_NVML='1')
+        p = start(binary, root, TEMPORION_X86_TEST_NO_NVML='1')
         try:
             assert line(p) == '72 - 39 44'; count += 1
             assert not log.exists()
         finally: assert 'gpu=unavailable' in finish(p)
     # Entirely missing sysfs tree (no CPU, disks or PCI devices).
     with tempfile.TemporaryDirectory() as tmp:
-        p = start(binary, pathlib.Path(tmp), TEMPORION_TEST_NO_NVML='1')
+        p = start(binary, pathlib.Path(tmp), TEMPORION_X86_TEST_NO_NVML='1')
         try: assert line(p) == '- -'; count += 1
         finally: finish(p)
     return count

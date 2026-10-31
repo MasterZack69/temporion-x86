@@ -1,20 +1,20 @@
-.temporion-box {
+.temporion-x86-box {
     /* Separate sensor groups more than each tag/value pair. */
     spacing: 11px;
     padding: 0 6px;
 }
 
-.temporion-item {
+.temporion-x86-item {
     spacing: 3px;
 }
 
-.temporion-tag {
+.temporion-x86-tag {
     font-size: 8pt;
     font-weight: bold;
     opacity: 0.55;
 }
 
-.temporion-value {
+.temporion-x86-value {
     /* Fixed width so changing digits don't shift the panel around.
      * Left-align so unused width falls after the value, not after the tag. */
     min-width: 2em;

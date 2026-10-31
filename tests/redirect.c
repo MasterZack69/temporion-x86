@@ -13,7 +13,7 @@
 #include <unistd.h>
 #include <limits.h>
 static const char *map(const char *p,char *b) {
-    const char *root=getenv("TEMPORION_TEST_ROOT");
+    const char *root=getenv("TEMPORION_X86_TEST_ROOT");
     if(root && p && !strncmp(p,"/sys/",5)) { snprintf(b,PATH_MAX,"%s%s",root,p+4); return b; }
     return p;
 }
@@ -37,12 +37,12 @@ int glob(const char*p,int flags,int(*err)(const char*,int),glob_t*g){NEXT(glob);
 static unsigned char fixture_fd[65536];
 ssize_t read(int fd,void *buf,size_t n) {
     NEXT(read);
-    if(getenv("TEMPORION_TEST_SHORT_READS") && (unsigned)fd<sizeof(fixture_fd)) {
+    if(getenv("TEMPORION_X86_TEST_SHORT_READS") && (unsigned)fd<sizeof(fixture_fd)) {
         if(!fixture_fd[fd]) {
             char proc[64],target[PATH_MAX];
             snprintf(proc,sizeof(proc),"/proc/self/fd/%d",fd);
             ssize_t len=readlink(proc,target,sizeof(target)-1);
-            const char *root=getenv("TEMPORION_TEST_ROOT");
+            const char *root=getenv("TEMPORION_X86_TEST_ROOT");
             if(len>=0){target[len]=0;if(root && !strncmp(target,root,strlen(root)))fixture_fd[fd]=1;}
         }
         if(fixture_fd[fd]==1){fixture_fd[fd]=2;errno=EINTR;return -1;}
@@ -54,6 +54,6 @@ int close(int fd){NEXT(close);if((unsigned)fd<sizeof(fixture_fd))fixture_fd[fd]=
 /* Explicit library absence, independent of the CI runner's NVIDIA setup. */
 void *dlopen(const char *p,int flags) {
     NEXT(dlopen);
-    if(p && strstr(p,"libnvidia-ml") && getenv("TEMPORION_TEST_NO_NVML"))return NULL;
+    if(p && strstr(p,"libnvidia-ml") && getenv("TEMPORION_X86_TEST_NO_NVML"))return NULL;
     return fn(p,flags);
 }

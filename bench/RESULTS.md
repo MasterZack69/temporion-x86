@@ -1,5 +1,11 @@
 # Benchmark results — x86-64 rewrite
 
+> Historical pre-identity-split snapshot. The raw files intentionally retain the
+> executable/source names and hashes measured at that time. Current production
+> names are `temporion-x86d` and `TEMPORION_X86_*`; see README.md for the separate
+> extension/package identities. Rerun the current benchmark commands to measure
+> the namespaced build; these numbers are not relabeled as a new measurement.
+
 ## Outcome
 
 Assembly wins the paired median comparison against both Rust profiles in all four steady-state fixture workloads. This is a software-overhead result, not a real-hardware or battery-life claim.

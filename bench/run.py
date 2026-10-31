@@ -24,10 +24,10 @@ def main():
     observations=[];rng=random.Random(42)
     with tempfile.TemporaryDirectory() as tmp:
         root=pathlib.Path(tmp);fixture(root)
-        env=dict(os.environ,TEMPORION_TEST_ROOT=str(root),
+        env=dict(os.environ,TEMPORION_X86_TEST_ROOT=str(root),
                  LD_PRELOAD=str(REPO/'build/redirect.so'),
                  LD_LIBRARY_PATH=str(REPO/'build'))
-        for name in ['TEMPORION_TEST_NVML_LOG','TEMPORION_TEST_SHORT_READS','TEMPORION_TEST_NVML_FAIL','TEMPORION_TEST_NO_NVML','TEMPORION_GPU_ALWAYS']:
+        for name in ['TEMPORION_X86_TEST_NVML_LOG','TEMPORION_X86_TEST_SHORT_READS','TEMPORION_X86_TEST_NVML_FAIL','TEMPORION_X86_TEST_NO_NVML','TEMPORION_X86_GPU_ALWAYS']:
             env.pop(name,None)
         for gpu in ['suspended','active']:
             (root/'bus/pci/devices/0000:01:00.0/power/runtime_status').write_text(gpu+'\n')
@@ -43,7 +43,7 @@ def main():
         # Startup + discovery + first sample + failing stdout => no timer sleep.
         for repeat in range(args.repeats*5):
             versions=['assembly','rust-size','rust-speed'];rng.shuffle(versions)
-            paths={'assembly':REPO/'build/temporiond','rust-size':REPO/'target/release/temporiond','rust-speed':REPO/'build/temporiond-rust-speed'}
+            paths={'assembly':REPO/'build/temporion-x86d','rust-size':REPO/'target/release/temporion-x86d-rust-reference','rust-speed':REPO/'build/temporion-x86d-rust-speed'}
             for version in versions:
                 with open('/dev/full','wb') as full, open(os.devnull,'wb') as null:
                     begin=time.perf_counter_ns()
@@ -56,10 +56,10 @@ def main():
                   head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip(),
                   seed=42,fixture='AMD Tctl + two NVMe regular files + runtime_status; fake NVML; warm page cache; LD_PRELOAD maps /sys; one pinned virtual CPU',
                   limitations='No real hwmon/NVML hardware, power, or compositor measurements. Startup includes process/loader overhead. Shared virtual host, not bare metal.')
-    sources=['asm/temporiond.S','bench/assembly.c','bench/rust.rs','tests/redirect.c','tests/nvml.c',
+    sources=['asm/temporion-x86d.S','bench/assembly.c','bench/rust.rs','tests/redirect.c','tests/nvml.c',
              'src/main.rs', *[str(p.relative_to(REPO)) for p in sorted((REPO/'src/sensors').glob('*.rs'))]]
-    binaries=['build/temporiond','build/bench-assembly','build/bench-rust-size','build/bench-rust-speed',
-              'build/temporiond-rust-speed','target/release/temporiond','build/redirect.so','build/libnvidia-ml.so.1']
+    binaries=['build/temporion-x86d','build/bench-assembly','build/bench-rust-size','build/bench-rust-speed',
+              'build/temporion-x86d-rust-speed','target/release/temporion-x86d-rust-reference','build/redirect.so','build/libnvidia-ml.so.1']
     metadata['source_sha256']={p:hashlib.sha256((REPO/p).read_bytes()).hexdigest() for p in sources}
     metadata['binary_sha256']={p:hashlib.sha256((REPO/p).read_bytes()).hexdigest() for p in binaries}
     output=dict(metadata=metadata,observations=observations)

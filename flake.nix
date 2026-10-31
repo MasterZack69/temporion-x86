@@ -1,5 +1,5 @@
 {
-  description = "Temporion — CPU (Tctl), NVIDIA GPU and NVMe temperatures in the GNOME top bar";
+  description = "Temporion x86 — CPU (Tctl), NVIDIA GPU and NVMe temperatures in the GNOME top bar";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -9,7 +9,7 @@
   outputs =
     { self, nixpkgs, systems, ... }:
     let
-      uuid = "temporion@masterzack69";
+      uuid = "temporion-x86@masterzack69";
       eachSystem = nixpkgs.lib.genAttrs (builtins.filter (system: system == "x86_64-linux") (import systems));
       pkgsFor = system: import nixpkgs { inherit system; };
     in
@@ -20,8 +20,8 @@
           pkgs = pkgsFor system;
 
           # Native x86-64 assembly daemon. Rust remains as a reference baseline.
-          temporiond = pkgs.stdenv.mkDerivation {
-            pname = "temporiond";
+          temporion-x86d = pkgs.stdenv.mkDerivation {
+            pname = "temporion-x86d";
             version = "0.2.0";
             src = ./.;
             nativeBuildInputs = [ pkgs.python3 ];
@@ -38,14 +38,14 @@
               homepage = "https://github.com/MasterZack69/temporion-x86";
               license = pkgs.lib.licenses.agpl3Only;
               platforms = [ "x86_64-linux" ];
-              mainProgram = "temporiond";
+              mainProgram = "temporion-x86d";
             };
           };
 
           # The GNOME extension: a thin GJS reader with the daemon's absolute
           # store path baked in, installed to the standard extensions dir.
-          temporion = pkgs.stdenvNoCC.mkDerivation {
-            pname = "temporion-gnome-extension";
+          temporion-x86 = pkgs.stdenvNoCC.mkDerivation {
+            pname = "temporion-x86-gnome-extension";
             version = "0.1.0";
             src = ./.;
             dontConfigure = true;
@@ -56,24 +56,24 @@
               mkdir -p "$dir"
               cp -r extension/. "$dir"/
               substituteInPlace "$dir/extension.js" \
-                --replace-fail '@TEMPORIOND@' '${temporiond}/bin/temporiond'
+                --replace-fail '@TEMPORION_X86D@' '${temporion-x86d}/bin/temporion-x86d'
               runHook postInstall
             '';
             passthru = {
               extensionUuid = uuid;
-              inherit temporiond;
+              inherit temporion-x86d;
             };
             meta = {
-              description = "Temporion GNOME Shell extension (frontend for temporiond)";
-              homepage = "https://github.com/MasterZack69/temporion";
+              description = "Temporion x86 GNOME Shell extension (frontend for temporion-x86d)";
+              homepage = "https://github.com/MasterZack69/temporion-x86";
               license = pkgs.lib.licenses.agpl3Only;
-              platforms = pkgs.lib.platforms.linux;
+              platforms = [ "x86_64-linux" ];
             };
           };
         in
         {
-          inherit temporiond temporion;
-          default = temporion;
+          inherit temporion-x86d temporion-x86;
+          default = temporion-x86;
         }
       );
 
@@ -81,12 +81,12 @@
       apps = eachSystem (system: {
         default = {
           type = "app";
-          program = "${self.packages.${system}.temporiond}/bin/temporiond";
+          program = "${self.packages.${system}.temporion-x86d}/bin/temporion-x86d";
         };
       });
 
       checks = eachSystem (system: {
-        inherit (self.packages.${system}) temporiond temporion;
+        inherit (self.packages.${system}) temporion-x86d temporion-x86;
       });
 
       formatter = eachSystem (system: (pkgsFor system).nixpkgs-fmt);

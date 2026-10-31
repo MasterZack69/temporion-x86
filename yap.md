@@ -2,7 +2,7 @@
 > implementation is retained for comparison. See README.md and bench/RESULTS.md
 > for current build instructions, tests and measured performance.
 
-# temporion
+# Temporion x86
 
 Temperature fetcher extension for GNOME — because freon still lags.
 
@@ -22,9 +22,9 @@ freon reads sensor files and shells out to `nvidia-smi` **synchronously inside
 the `gnome-shell` process**, blocking the compositor's main loop on every poll —
 that's the jank.
 
-Temporion splits the work:
+Temporion x86 splits the work:
 
-- **`temporiond`** — a small x86-64 assembly daemon that reads every sensor on its own
+- **`temporion-x86d`** — a small x86-64 assembly daemon that reads every sensor on its own
   timer, in its own process, and streams one line of temperatures to stdout.
 - **the extension** — ~200 lines of GJS (unavoidable: extensions must have a
   JavaScript entry point, there is no Rust runtime inside gnome-shell) that
@@ -45,7 +45,7 @@ The original Rust baseline has zero external crates and is retained unchanged.
 **Battery note:** on this Optimus laptop the RTX 4050 is often
 runtime-suspended. Querying NVML would force it back on, so by default the
 daemon checks the GPU's PCI `power/runtime_status` first and reports `–` while
-it is suspended instead of waking it. Set `TEMPORION_GPU_ALWAYS=1` to always
+it is suspended instead of waking it. Set `TEMPORION_X86_GPU_ALWAYS=1` to always
 query it.
 
 ## Install (NixOS, flake)
@@ -54,14 +54,14 @@ Add the extension package to your system (it pulls the daemon in automatically):
 
 ```nix
 # flake.nix inputs
-temporion.url = "github:MasterZack69/temporion-x86";
+temporion-x86.url = "github:MasterZack69/temporion-x86";
 
 # configuration.nix (with inputs in specialArgs)
-environment.systemPackages = [ inputs.temporion.packages.${pkgs.system}.default ];
+environment.systemPackages = [ inputs.temporion-x86.packages.${pkgs.system}.default ];
 ```
 
-Rebuild, then enable **Temporion** in the Extensions app (or
-`gnome-extensions enable temporion@masterzack69`). Log out/in if GNOME doesn't
+Rebuild, then enable **Temporion x86** in the Extensions app (or
+`gnome-extensions enable temporion-x86@masterzack69`). Log out/in if GNOME doesn't
 pick it up immediately.
 
 ### Try the daemon without installing
@@ -74,12 +74,12 @@ nix run github:MasterZack69/temporion-x86
 
 ## Configuration
 
-Environment variables read by `temporiond`:
+Environment variables read by `temporion-x86d`:
 
 | Variable | Default | Meaning |
 | --- | --- | --- |
-| `TEMPORION_INTERVAL_MS` | `2000` | sample interval in milliseconds (min 100) |
-| `TEMPORION_GPU_ALWAYS` | unset | set to `1` to query the dGPU even while suspended |
+| `TEMPORION_X86_INTERVAL_MS` | `2000` | sample interval in milliseconds (min 100) |
+| `TEMPORION_X86_GPU_ALWAYS` | unset | set to `1` to query the dGPU even while suspended |
 
 Panel colour thresholds and position are constants at the top of
 `extension/extension.js`.
@@ -88,7 +88,7 @@ Panel colour thresholds and position are constants at the top of
 
 ```sh
 nix develop          # cargo, rustc, clippy, rustfmt, gjs, node
-make && ./build/temporiond  # assembly daemon
+make && ./build/temporion-x86d  # assembly daemon
 make test differential     # assembly/Rust correctness checks
 cargo clippy               # retained Rust baseline lints
 ```
@@ -96,15 +96,15 @@ cargo clippy               # retained Rust baseline lints
 Build just the daemon or the packaged extension:
 
 ```sh
-nix build .#temporiond
-nix build .#temporion
+nix build .#temporion-x86d
+nix build .#temporion-x86
 ```
 
 ## Layout
 
 ```
 asm/
-  temporiond.S         production x86-64 daemon
+  temporion-x86d.S         production x86-64 daemon
 Makefile               assembly build, tests and benchmarks
 src/                   unchanged Rust reference
   main.rs              loop + stdout streaming
@@ -118,7 +118,7 @@ extension/
   extension.js         thin async GJS frontend
   metadata.json
   stylesheet.css
-flake.nix              builds temporiond + the extension
+flake.nix              builds temporion-x86d + the extension
 ```
 
 ## License
