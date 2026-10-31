@@ -1,0 +1,2678 @@
+{
+  "metadata": {
+    "cpu": 0,
+    "machine": "x86_64",
+    "platform": "Linux-6.18.56-x86_64-with-glibc2.34",
+    "rust": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+    "gcc": "cc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5)",
+    "head": "bdb85c02bd741babd754a07b526792ef9f5490c4",
+    "seed": 42,
+    "fixture": "AMD Tctl + two NVMe regular files + runtime_status; fake NVML; warm page cache; LD_PRELOAD maps /sys; one pinned virtual CPU",
+    "limitations": "No real hwmon/NVML hardware, power, or compositor measurements. Startup includes process/loader overhead. Shared virtual host, not bare metal.",
+    "source_sha256": {
+      "asm/temporiond.S": "c110af1a41d0c6c9ce516af4bda03c8babf096a933b3c995add2e8d2a218bd9e",
+      "bench/assembly.c": "06a8e036253e2bccefecc5ae52407865ffdbea03212d0997dc96b18188f245c6",
+      "bench/rust.rs": "a425e88ff8fc56d654c3c562812ba02f8ae1540aa144a57d06ab6391716af564",
+      "tests/redirect.c": "fbd23c57a5f179a98f87205cdda7d6897c295820e7a42193490890bd5e96620b",
+      "tests/nvml.c": "3c779dfbd4119213219ac32c415a3da5448b65398ac2671b9a5be6f30dcb1ad1",
+      "src/main.rs": "b40cdc45e6fe944826ced3cc7b09fec37f4aeec5a0f313dac36b7209a4dbe2cf",
+      "src/sensors/cpu.rs": "c1ce5574676dd20d7774689952957af38d4618e8865aa8bf22bebbe020fee4c2",
+      "src/sensors/disk.rs": "b3e61ddda579379c2cc561bcf9b1ce2646c19754cb818e0cde8bd463b7365a39",
+      "src/sensors/gpu.rs": "72fe77ae449f24470dc9cf967c8d86a409613926292cdd86ca79f2a99bf0c6d6",
+      "src/sensors/hwmon.rs": "6144569fcc036bdb41f6144ecdbced09b2765f940d0d7c21f8872073ea978b0e",
+      "src/sensors/mod.rs": "f32b78852ed790f6d1b71ff96328964caffbbcf82d100f53f9b177a4eb319aff"
+    },
+    "binary_sha256": {
+      "build/temporiond": "0e38c48bdbc5bcff71dc0ec3a5b687d20e3ee8ab3147df13452ec6ea717bc63d",
+      "build/bench-assembly": "907889d01397ac3f59fbc73600ad38d18d89501f3c72e75886c948fd583a2e0e",
+      "build/bench-rust-size": "77581c68a2cbb3605650b5aa66fd1013962c5e627b264ad336cfc9f0e1347978",
+      "build/bench-rust-speed": "1151d72bcfb7104a4b78e8d59e3a9f834171fc131bfba626b80688068e74fcb4",
+      "build/temporiond-rust-speed": "4339c80aff020f744ac42e6b789763c0985b23ea5bea2454c60769398788be3c",
+      "target/release/temporiond": "8cbddf3b13ece731dc8173ac12025b82fe43cb5aa670210907d350ecfa2e09e9",
+      "build/redirect.so": "6b23b98987bf9915b14ef697304a723effb40445663c5f5420fbd6178780ad80",
+      "build/libnvidia-ml.so.1": "79995ebdde07dcc46d1fc735651ff55ca1d460f6edbc08144dbe4ec4cb753a90"
+    }
+  },
+  "observations": [
+    {
+      "wall_ns": 84822284,
+      "cpu_ns": 84784737,
+      "checksum": 780000,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 0,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 76911791,
+      "cpu_ns": 76895360,
+      "checksum": 780000,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 0,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 84760090,
+      "cpu_ns": 84696175,
+      "checksum": 780000,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 0,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 84663822,
+      "cpu_ns": 84661546,
+      "checksum": 780000,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 1,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 84716433,
+      "cpu_ns": 84642363,
+      "checksum": 780000,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 1,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 77106858,
+      "cpu_ns": 77074179,
+      "checksum": 780000,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 1,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 85851650,
+      "cpu_ns": 85849588,
+      "checksum": 780000,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 2,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 85027687,
+      "cpu_ns": 85015616,
+      "checksum": 780000,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 2,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 76814290,
+      "cpu_ns": 76812216,
+      "checksum": 780000,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 2,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 84807254,
+      "cpu_ns": 84804699,
+      "checksum": 780000,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 3,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 84508051,
+      "cpu_ns": 84490510,
+      "checksum": 780000,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 3,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 77226690,
+      "cpu_ns": 77174397,
+      "checksum": 780000,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 3,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 85275273,
+      "cpu_ns": 85258529,
+      "checksum": 780000,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 4,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 77177359,
+      "cpu_ns": 77121762,
+      "checksum": 780000,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 4,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86209724,
+      "cpu_ns": 86206885,
+      "checksum": 780000,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 4,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 77551506,
+      "cpu_ns": 77535360,
+      "checksum": 780000,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 5,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 84690911,
+      "cpu_ns": 84687627,
+      "checksum": 780000,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 5,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 85768164,
+      "cpu_ns": 85665851,
+      "checksum": 780000,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 5,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 84793477,
+      "cpu_ns": 84644805,
+      "checksum": 780000,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 6,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 85159600,
+      "cpu_ns": 85091650,
+      "checksum": 780000,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 6,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 77472889,
+      "cpu_ns": 77468999,
+      "checksum": 780000,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 6,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 85758713,
+      "cpu_ns": 85709162,
+      "checksum": 780000,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 7,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 84751894,
+      "cpu_ns": 84737610,
+      "checksum": 780000,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 7,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 76986417,
+      "cpu_ns": 76983285,
+      "checksum": 780000,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 7,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 85457732,
+      "cpu_ns": 85448084,
+      "checksum": 780000,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 8,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 85798168,
+      "cpu_ns": 85724269,
+      "checksum": 780000,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 8,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 77120553,
+      "cpu_ns": 77070946,
+      "checksum": 780000,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 8,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 85009910,
+      "cpu_ns": 85007226,
+      "checksum": 780000,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 9,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 76964990,
+      "cpu_ns": 76962333,
+      "checksum": 780000,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 9,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 84377685,
+      "cpu_ns": 84375727,
+      "checksum": 780000,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 9,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 76997077,
+      "cpu_ns": 76883280,
+      "checksum": 780000,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 10,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 84938272,
+      "cpu_ns": 84935836,
+      "checksum": 780000,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 10,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 84872365,
+      "cpu_ns": 84869427,
+      "checksum": 780000,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "sample",
+      "repeat": 10,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86718986,
+      "cpu_ns": 86705351,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 0,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86512994,
+      "cpu_ns": 86511015,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 0,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 79621611,
+      "cpu_ns": 79565227,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 0,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 79153747,
+      "cpu_ns": 79151584,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 1,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 88650249,
+      "cpu_ns": 88629212,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 1,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 102853377,
+      "cpu_ns": 102749089,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 1,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 92646384,
+      "cpu_ns": 92594048,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 2,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87001987,
+      "cpu_ns": 86998826,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 2,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 79154319,
+      "cpu_ns": 79152183,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 2,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 78973947,
+      "cpu_ns": 78971493,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 3,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86533269,
+      "cpu_ns": 86530466,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 3,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 89226521,
+      "cpu_ns": 89224236,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 3,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 80599711,
+      "cpu_ns": 80585698,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 4,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 91332669,
+      "cpu_ns": 91329919,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 4,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87060077,
+      "cpu_ns": 87057460,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 4,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 97925071,
+      "cpu_ns": 97660938,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 5,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 96661343,
+      "cpu_ns": 96602031,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 5,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 92769970,
+      "cpu_ns": 92766471,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 5,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 95616947,
+      "cpu_ns": 95612648,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 6,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 98980942,
+      "cpu_ns": 98978283,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 6,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 90423888,
+      "cpu_ns": 90421385,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 6,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 88100648,
+      "cpu_ns": 88097229,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 7,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87237123,
+      "cpu_ns": 87234943,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 7,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 79053341,
+      "cpu_ns": 79037994,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 7,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87416396,
+      "cpu_ns": 87412549,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 8,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86851661,
+      "cpu_ns": 86839960,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 8,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 78877291,
+      "cpu_ns": 78848783,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 8,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 80585271,
+      "cpu_ns": 80567902,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 9,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87346447,
+      "cpu_ns": 87343053,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 9,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 88009112,
+      "cpu_ns": 87978372,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 9,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 88883696,
+      "cpu_ns": 88881174,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 10,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 94658130,
+      "cpu_ns": 94627024,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 10,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 81577163,
+      "cpu_ns": 81573796,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "suspended",
+      "mode": "write",
+      "repeat": 10,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 88430442,
+      "cpu_ns": 88426504,
+      "checksum": 792000,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 0,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 79294169,
+      "cpu_ns": 79279510,
+      "checksum": 792000,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 0,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87325173,
+      "cpu_ns": 87321427,
+      "checksum": 792000,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 0,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86967366,
+      "cpu_ns": 86965235,
+      "checksum": 792000,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 1,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 81799592,
+      "cpu_ns": 81769068,
+      "checksum": 792000,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 1,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86963500,
+      "cpu_ns": 86960015,
+      "checksum": 792000,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 1,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 78049956,
+      "cpu_ns": 78047963,
+      "checksum": 792000,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 2,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86078708,
+      "cpu_ns": 86075784,
+      "checksum": 792000,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 2,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86599178,
+      "cpu_ns": 86596052,
+      "checksum": 792000,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 2,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 78105983,
+      "cpu_ns": 78104104,
+      "checksum": 792000,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 3,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86590304,
+      "cpu_ns": 86588206,
+      "checksum": 792000,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 3,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86245648,
+      "cpu_ns": 86241231,
+      "checksum": 792000,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 3,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 90610601,
+      "cpu_ns": 90607134,
+      "checksum": 792000,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 4,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 97875412,
+      "cpu_ns": 97872668,
+      "checksum": 792000,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 4,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 99425529,
+      "cpu_ns": 99421936,
+      "checksum": 792000,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 4,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 94688149,
+      "cpu_ns": 94684565,
+      "checksum": 792000,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 5,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 99605074,
+      "cpu_ns": 99602789,
+      "checksum": 792000,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 5,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 97858736,
+      "cpu_ns": 97798163,
+      "checksum": 792000,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 5,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 98740784,
+      "cpu_ns": 98736922,
+      "checksum": 792000,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 6,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 91222340,
+      "cpu_ns": 91218210,
+      "checksum": 792000,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 6,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 83466654,
+      "cpu_ns": 83463172,
+      "checksum": 792000,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 6,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 98195677,
+      "cpu_ns": 98191209,
+      "checksum": 792000,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 7,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 83216922,
+      "cpu_ns": 83213498,
+      "checksum": 792000,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 7,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 93823047,
+      "cpu_ns": 93806386,
+      "checksum": 792000,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 7,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 100673149,
+      "cpu_ns": 100668556,
+      "checksum": 792000,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 8,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 93245683,
+      "cpu_ns": 93242585,
+      "checksum": 792000,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 8,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 89914999,
+      "cpu_ns": 89893970,
+      "checksum": 792000,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 8,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 88080026,
+      "cpu_ns": 88044197,
+      "checksum": 792000,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 9,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 95256951,
+      "cpu_ns": 95253626,
+      "checksum": 792000,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 9,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 96951986,
+      "cpu_ns": 96948916,
+      "checksum": 792000,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 9,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 84623014,
+      "cpu_ns": 84620631,
+      "checksum": 792000,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 10,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 94303560,
+      "cpu_ns": 94298176,
+      "checksum": 792000,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 10,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 95815298,
+      "cpu_ns": 95813017,
+      "checksum": 792000,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "sample",
+      "repeat": 10,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 95135658,
+      "cpu_ns": 95132504,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 0,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 99519297,
+      "cpu_ns": 99497745,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 0,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 89185408,
+      "cpu_ns": 89173480,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 0,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 103361922,
+      "cpu_ns": 103333027,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 1,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86736594,
+      "cpu_ns": 86681105,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 1,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 101901439,
+      "cpu_ns": 101898199,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 1,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 96748480,
+      "cpu_ns": 96744659,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 2,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 99898131,
+      "cpu_ns": 99894972,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 2,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 96140306,
+      "cpu_ns": 96136326,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 2,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 98944964,
+      "cpu_ns": 98941392,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 3,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86550988,
+      "cpu_ns": 86547854,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 3,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 103022319,
+      "cpu_ns": 103002151,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 3,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 95634506,
+      "cpu_ns": 95632100,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 4,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 79057143,
+      "cpu_ns": 79048674,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 4,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87549185,
+      "cpu_ns": 87527973,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 4,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87609253,
+      "cpu_ns": 87607297,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 5,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 79060897,
+      "cpu_ns": 79059525,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 5,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87309226,
+      "cpu_ns": 87308032,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 5,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86563624,
+      "cpu_ns": 86562165,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 6,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87712911,
+      "cpu_ns": 87711073,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 6,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 78941184,
+      "cpu_ns": 78916632,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 6,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 79317093,
+      "cpu_ns": 79314360,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 7,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86686939,
+      "cpu_ns": 86669580,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 7,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87926155,
+      "cpu_ns": 87924338,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 7,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87305176,
+      "cpu_ns": 87303431,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 8,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 79235863,
+      "cpu_ns": 79219073,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 8,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 88248871,
+      "cpu_ns": 88141741,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 8,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 79569790,
+      "cpu_ns": 79566636,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 9,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87570046,
+      "cpu_ns": 87553089,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 9,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 86888033,
+      "cpu_ns": 86885814,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 9,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 90223333,
+      "cpu_ns": 90221507,
+      "checksum": 0,
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 10,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 87096424,
+      "cpu_ns": 87093864,
+      "checksum": 0,
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 10,
+      "samples": 12000
+    },
+    {
+      "wall_ns": 78824039,
+      "cpu_ns": 78822296,
+      "checksum": 0,
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "write",
+      "repeat": 10,
+      "samples": 12000
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 0,
+      "samples": 1,
+      "wall_ns": 898951
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 0,
+      "samples": 1,
+      "wall_ns": 756409
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 0,
+      "samples": 1,
+      "wall_ns": 598682
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 1,
+      "samples": 1,
+      "wall_ns": 552704
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 1,
+      "samples": 1,
+      "wall_ns": 687992
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 1,
+      "samples": 1,
+      "wall_ns": 678097
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 2,
+      "samples": 1,
+      "wall_ns": 689114
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 2,
+      "samples": 1,
+      "wall_ns": 678990
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 2,
+      "samples": 1,
+      "wall_ns": 579097
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 3,
+      "samples": 1,
+      "wall_ns": 534357
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 3,
+      "samples": 1,
+      "wall_ns": 668309
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 3,
+      "samples": 1,
+      "wall_ns": 675258
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 4,
+      "samples": 1,
+      "wall_ns": 658474
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 4,
+      "samples": 1,
+      "wall_ns": 666401
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 4,
+      "samples": 1,
+      "wall_ns": 547838
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 5,
+      "samples": 1,
+      "wall_ns": 520720
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 5,
+      "samples": 1,
+      "wall_ns": 669074
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 5,
+      "samples": 1,
+      "wall_ns": 679143
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 6,
+      "samples": 1,
+      "wall_ns": 660119
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 6,
+      "samples": 1,
+      "wall_ns": 658403
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 6,
+      "samples": 1,
+      "wall_ns": 564958
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 7,
+      "samples": 1,
+      "wall_ns": 671318
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 7,
+      "samples": 1,
+      "wall_ns": 672206
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 7,
+      "samples": 1,
+      "wall_ns": 541053
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 8,
+      "samples": 1,
+      "wall_ns": 514455
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 8,
+      "samples": 1,
+      "wall_ns": 655738
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 8,
+      "samples": 1,
+      "wall_ns": 689688
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 9,
+      "samples": 1,
+      "wall_ns": 535380
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 9,
+      "samples": 1,
+      "wall_ns": 651630
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 9,
+      "samples": 1,
+      "wall_ns": 665099
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 10,
+      "samples": 1,
+      "wall_ns": 539532
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 10,
+      "samples": 1,
+      "wall_ns": 666565
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 10,
+      "samples": 1,
+      "wall_ns": 900546
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 11,
+      "samples": 1,
+      "wall_ns": 666746
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 11,
+      "samples": 1,
+      "wall_ns": 533332
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 11,
+      "samples": 1,
+      "wall_ns": 660066
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 12,
+      "samples": 1,
+      "wall_ns": 677051
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 12,
+      "samples": 1,
+      "wall_ns": 671887
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 12,
+      "samples": 1,
+      "wall_ns": 541582
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 13,
+      "samples": 1,
+      "wall_ns": 665228
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 13,
+      "samples": 1,
+      "wall_ns": 666957
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 13,
+      "samples": 1,
+      "wall_ns": 537062
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 14,
+      "samples": 1,
+      "wall_ns": 663307
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 14,
+      "samples": 1,
+      "wall_ns": 658318
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 14,
+      "samples": 1,
+      "wall_ns": 597193
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 15,
+      "samples": 1,
+      "wall_ns": 657659
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 15,
+      "samples": 1,
+      "wall_ns": 536242
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 15,
+      "samples": 1,
+      "wall_ns": 661010
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 16,
+      "samples": 1,
+      "wall_ns": 527326
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 16,
+      "samples": 1,
+      "wall_ns": 665725
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 16,
+      "samples": 1,
+      "wall_ns": 680144
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 17,
+      "samples": 1,
+      "wall_ns": 670494
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 17,
+      "samples": 1,
+      "wall_ns": 539672
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 17,
+      "samples": 1,
+      "wall_ns": 654887
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 18,
+      "samples": 1,
+      "wall_ns": 542046
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 18,
+      "samples": 1,
+      "wall_ns": 659784
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 18,
+      "samples": 1,
+      "wall_ns": 673865
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 19,
+      "samples": 1,
+      "wall_ns": 554418
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 19,
+      "samples": 1,
+      "wall_ns": 659535
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 19,
+      "samples": 1,
+      "wall_ns": 661761
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 20,
+      "samples": 1,
+      "wall_ns": 539967
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 20,
+      "samples": 1,
+      "wall_ns": 662288
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 20,
+      "samples": 1,
+      "wall_ns": 672231
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 21,
+      "samples": 1,
+      "wall_ns": 693411
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 21,
+      "samples": 1,
+      "wall_ns": 536300
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 21,
+      "samples": 1,
+      "wall_ns": 667084
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 22,
+      "samples": 1,
+      "wall_ns": 669165
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 22,
+      "samples": 1,
+      "wall_ns": 524969
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 22,
+      "samples": 1,
+      "wall_ns": 651736
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 23,
+      "samples": 1,
+      "wall_ns": 822894
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 23,
+      "samples": 1,
+      "wall_ns": 658588
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 23,
+      "samples": 1,
+      "wall_ns": 668570
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 24,
+      "samples": 1,
+      "wall_ns": 532655
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 24,
+      "samples": 1,
+      "wall_ns": 661444
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 24,
+      "samples": 1,
+      "wall_ns": 663938
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 25,
+      "samples": 1,
+      "wall_ns": 675139
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 25,
+      "samples": 1,
+      "wall_ns": 676871
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 25,
+      "samples": 1,
+      "wall_ns": 539506
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 26,
+      "samples": 1,
+      "wall_ns": 656937
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 26,
+      "samples": 1,
+      "wall_ns": 527903
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 26,
+      "samples": 1,
+      "wall_ns": 668667
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 27,
+      "samples": 1,
+      "wall_ns": 760358
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 27,
+      "samples": 1,
+      "wall_ns": 543548
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 27,
+      "samples": 1,
+      "wall_ns": 661775
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 28,
+      "samples": 1,
+      "wall_ns": 546727
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 28,
+      "samples": 1,
+      "wall_ns": 659121
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 28,
+      "samples": 1,
+      "wall_ns": 662538
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 29,
+      "samples": 1,
+      "wall_ns": 669717
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 29,
+      "samples": 1,
+      "wall_ns": 532236
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 29,
+      "samples": 1,
+      "wall_ns": 659020
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 30,
+      "samples": 1,
+      "wall_ns": 660522
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 30,
+      "samples": 1,
+      "wall_ns": 537454
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 30,
+      "samples": 1,
+      "wall_ns": 670856
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 31,
+      "samples": 1,
+      "wall_ns": 553224
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 31,
+      "samples": 1,
+      "wall_ns": 658101
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 31,
+      "samples": 1,
+      "wall_ns": 666158
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 32,
+      "samples": 1,
+      "wall_ns": 686377
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 32,
+      "samples": 1,
+      "wall_ns": 537013
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 32,
+      "samples": 1,
+      "wall_ns": 655028
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 33,
+      "samples": 1,
+      "wall_ns": 703200
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 33,
+      "samples": 1,
+      "wall_ns": 667745
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 33,
+      "samples": 1,
+      "wall_ns": 537047
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 34,
+      "samples": 1,
+      "wall_ns": 667883
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 34,
+      "samples": 1,
+      "wall_ns": 659005
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 34,
+      "samples": 1,
+      "wall_ns": 529084
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 35,
+      "samples": 1,
+      "wall_ns": 826086
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 35,
+      "samples": 1,
+      "wall_ns": 689750
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 35,
+      "samples": 1,
+      "wall_ns": 676064
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 36,
+      "samples": 1,
+      "wall_ns": 666795
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 36,
+      "samples": 1,
+      "wall_ns": 539192
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 36,
+      "samples": 1,
+      "wall_ns": 654922
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 37,
+      "samples": 1,
+      "wall_ns": 687365
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 37,
+      "samples": 1,
+      "wall_ns": 682072
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 37,
+      "samples": 1,
+      "wall_ns": 533357
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 38,
+      "samples": 1,
+      "wall_ns": 691598
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 38,
+      "samples": 1,
+      "wall_ns": 535018
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 38,
+      "samples": 1,
+      "wall_ns": 683742
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 39,
+      "samples": 1,
+      "wall_ns": 745290
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 39,
+      "samples": 1,
+      "wall_ns": 665471
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 39,
+      "samples": 1,
+      "wall_ns": 532871
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 40,
+      "samples": 1,
+      "wall_ns": 655873
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 40,
+      "samples": 1,
+      "wall_ns": 522991
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 40,
+      "samples": 1,
+      "wall_ns": 665634
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 41,
+      "samples": 1,
+      "wall_ns": 680870
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 41,
+      "samples": 1,
+      "wall_ns": 657573
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 41,
+      "samples": 1,
+      "wall_ns": 525076
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 42,
+      "samples": 1,
+      "wall_ns": 675152
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 42,
+      "samples": 1,
+      "wall_ns": 676171
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 42,
+      "samples": 1,
+      "wall_ns": 535430
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 43,
+      "samples": 1,
+      "wall_ns": 685100
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 43,
+      "samples": 1,
+      "wall_ns": 676152
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 43,
+      "samples": 1,
+      "wall_ns": 526144
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 44,
+      "samples": 1,
+      "wall_ns": 669663
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 44,
+      "samples": 1,
+      "wall_ns": 534606
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 44,
+      "samples": 1,
+      "wall_ns": 653491
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 45,
+      "samples": 1,
+      "wall_ns": 525816
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 45,
+      "samples": 1,
+      "wall_ns": 675743
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 45,
+      "samples": 1,
+      "wall_ns": 672052
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 46,
+      "samples": 1,
+      "wall_ns": 661240
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 46,
+      "samples": 1,
+      "wall_ns": 646623
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 46,
+      "samples": 1,
+      "wall_ns": 529233
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 47,
+      "samples": 1,
+      "wall_ns": 525569
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 47,
+      "samples": 1,
+      "wall_ns": 942475
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 47,
+      "samples": 1,
+      "wall_ns": 658149
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 48,
+      "samples": 1,
+      "wall_ns": 535205
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 48,
+      "samples": 1,
+      "wall_ns": 667328
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 48,
+      "samples": 1,
+      "wall_ns": 672167
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 49,
+      "samples": 1,
+      "wall_ns": 548144
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 49,
+      "samples": 1,
+      "wall_ns": 653028
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 49,
+      "samples": 1,
+      "wall_ns": 656903
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 50,
+      "samples": 1,
+      "wall_ns": 658984
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 50,
+      "samples": 1,
+      "wall_ns": 671562
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 50,
+      "samples": 1,
+      "wall_ns": 541492
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 51,
+      "samples": 1,
+      "wall_ns": 758575
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 51,
+      "samples": 1,
+      "wall_ns": 670706
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 51,
+      "samples": 1,
+      "wall_ns": 530382
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 52,
+      "samples": 1,
+      "wall_ns": 663400
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 52,
+      "samples": 1,
+      "wall_ns": 535060
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 52,
+      "samples": 1,
+      "wall_ns": 655467
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 53,
+      "samples": 1,
+      "wall_ns": 648178
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 53,
+      "samples": 1,
+      "wall_ns": 557694
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 53,
+      "samples": 1,
+      "wall_ns": 670166
+    },
+    {
+      "version": "rust-size",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 54,
+      "samples": 1,
+      "wall_ns": 664089
+    },
+    {
+      "version": "assembly",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 54,
+      "samples": 1,
+      "wall_ns": 528665
+    },
+    {
+      "version": "rust-speed",
+      "gpu": "active",
+      "mode": "startup",
+      "repeat": 54,
+      "samples": 1,
+      "wall_ns": 655117
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-name: Rust
+name: Temporion x86 correctness
 
 on:
   push:
@@ -22,3 +22,12 @@ jobs:
       run: cargo check --verbose
     - name: Run tests
       run: cargo test --verbose
+
+    - name: Build Rust reference
+      run: cargo build --release
+    - name: Build and test assembly against Rust
+      run: make test differential
+    - name: Build benchmark executables and speed-optimized Rust
+      run: make bench-build
+    - name: Check speed-optimized Rust parity
+      run: TEMPORION_X86_RUST_BIN="$PWD/build/temporion-x86d-rust-speed" python3 tests/integration.py

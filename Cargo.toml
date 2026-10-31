@@ -1,16 +1,17 @@
 [package]
-name = "temporion"
+name = "temporion-x86-rust-reference"
 version = "0.1.0"
 edition = "2021"
-description = "Zero-dependency Rust daemon that streams CPU (Tctl), NVIDIA GPU, and NVMe temperatures for the Temporion GNOME extension."
+description = "Retained Rust reference for testing the separate Temporion x86 assembly project."
 license = "AGPL-3.0-only"
-repository = "https://github.com/MasterZack69/temporion"
+repository = "https://github.com/MasterZack69/temporion-x86"
 
-# All logic lives here; the GNOME extension is a thin GJS reader.
+# Reference implementation only; production is built by Make/Nix.
+# All reference sensor logic lives here; the GNOME extension is a thin GJS reader.
 # No external crates on purpose: std-only + a tiny hand-written NVML FFI.
 
 [[bin]]
-name = "temporiond"
+name = "temporion-x86d-rust-reference"
 path = "src/main.rs"
 
 [profile.release]
