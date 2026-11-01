@@ -2,19 +2,19 @@
   "metadata": {
     "cpu": 0,
     "machine": "x86_64",
-    "platform": "Linux-6.18.56-x86_64-with-glibc2.34",
-    "rust": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
-    "gcc": "cc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5)",
-    "head": "bdb85c02bd741babd754a07b526792ef9f5490c4",
+    "platform": "Linux-7.2.8-x86_64-with-glibc2.44",
+    "rust": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)",
+    "gcc": "gcc (GCC) 16.2.0",
+    "head": "f9c40e1bfd22cb120bd02c297715f95324924622",
     "seed": 42,
     "fixture": "AMD Tctl + two NVMe regular files + runtime_status; fake NVML; warm page cache; LD_PRELOAD maps /sys; one pinned virtual CPU",
     "limitations": "No real hwmon/NVML hardware, power, or compositor measurements. Startup includes process/loader overhead. Shared virtual host, not bare metal.",
     "source_sha256": {
-      "asm/temporiond.S": "c110af1a41d0c6c9ce516af4bda03c8babf096a933b3c995add2e8d2a218bd9e",
+      "asm/temporion-x86d.S": "ce355e7be0d3f9232098b244defe0931b0673f8782fcd09f9a2d3f1dfaee8d2b",
       "bench/assembly.c": "06a8e036253e2bccefecc5ae52407865ffdbea03212d0997dc96b18188f245c6",
       "bench/rust.rs": "a425e88ff8fc56d654c3c562812ba02f8ae1540aa144a57d06ab6391716af564",
-      "tests/redirect.c": "fbd23c57a5f179a98f87205cdda7d6897c295820e7a42193490890bd5e96620b",
-      "tests/nvml.c": "3c779dfbd4119213219ac32c415a3da5448b65398ac2671b9a5be6f30dcb1ad1",
+      "tests/redirect.c": "9ec08f6f5e16dc8f32563a35870a64044855bb9577eb6a769a01951b2c901c77",
+      "tests/nvml.c": "aa9e808bf18c880c906f389251663ec7780a5ccc094b93545b0d6905ef7520e5",
       "src/main.rs": "b40cdc45e6fe944826ced3cc7b09fec37f4aeec5a0f313dac36b7209a4dbe2cf",
       "src/sensors/cpu.rs": "c1ce5574676dd20d7774689952957af38d4618e8865aa8bf22bebbe020fee4c2",
       "src/sensors/disk.rs": "b3e61ddda579379c2cc561bcf9b1ce2646c19754cb818e0cde8bd463b7365a39",
@@ -23,20 +23,20 @@
       "src/sensors/mod.rs": "f32b78852ed790f6d1b71ff96328964caffbbcf82d100f53f9b177a4eb319aff"
     },
     "binary_sha256": {
-      "build/temporiond": "0e38c48bdbc5bcff71dc0ec3a5b687d20e3ee8ab3147df13452ec6ea717bc63d",
-      "build/bench-assembly": "907889d01397ac3f59fbc73600ad38d18d89501f3c72e75886c948fd583a2e0e",
-      "build/bench-rust-size": "77581c68a2cbb3605650b5aa66fd1013962c5e627b264ad336cfc9f0e1347978",
-      "build/bench-rust-speed": "1151d72bcfb7104a4b78e8d59e3a9f834171fc131bfba626b80688068e74fcb4",
-      "build/temporiond-rust-speed": "4339c80aff020f744ac42e6b789763c0985b23ea5bea2454c60769398788be3c",
-      "target/release/temporiond": "8cbddf3b13ece731dc8173ac12025b82fe43cb5aa670210907d350ecfa2e09e9",
-      "build/redirect.so": "6b23b98987bf9915b14ef697304a723effb40445663c5f5420fbd6178780ad80",
-      "build/libnvidia-ml.so.1": "79995ebdde07dcc46d1fc735651ff55ca1d460f6edbc08144dbe4ec4cb753a90"
+      "build/temporion-x86d": "725cf745c0f5e9b49e2ad27318162711d776462ea59ba70fa2b1a7df5ac49347",
+      "build/bench-assembly": "146e4113d0ad1198db6104ae78f9b56683e54ae4d0738fd2a9882f8a2757bfa4",
+      "build/bench-rust-size": "72cda3ba1b9fca26c0137bf9def05971de9cd46adbf6ea4e514b6ca119e12803",
+      "build/bench-rust-speed": "a68609139ec720a51e70c20f7f36765c89da656b47b4fa2b118d0c205b5d94b9",
+      "build/temporion-x86d-rust-speed": "5930b6fdef0fb4527edcbc8c4b8f33e372e329a458e7dded4a292a600e2a21d7",
+      "target/release/temporion-x86d-rust-reference": "bc066f4b09e7833e7cdde3a5e2b186b4b0f06d6d26ff55ea2ac813a2cbaaffda",
+      "build/redirect.so": "d402a950ee7e70653ea3a371c05c724dce279f4531ba6514a2cc8c17c1dcd43f",
+      "build/libnvidia-ml.so.1": "039bc24712e22c2584069d4e498f03b26ebd0a0304c24f7d9b5386c617764fda"
     }
   },
   "observations": [
     {
-      "wall_ns": 84822284,
-      "cpu_ns": 84784737,
+      "wall_ns": 324364531,
+      "cpu_ns": 322976495,
       "checksum": 780000,
       "version": "rust-size",
       "gpu": "suspended",
@@ -45,8 +45,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 76911791,
-      "cpu_ns": 76895360,
+      "wall_ns": 206431532,
+      "cpu_ns": 205838659,
       "checksum": 780000,
       "version": "assembly",
       "gpu": "suspended",
@@ -55,8 +55,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 84760090,
-      "cpu_ns": 84696175,
+      "wall_ns": 209210727,
+      "cpu_ns": 208614526,
       "checksum": 780000,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -65,8 +65,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 84663822,
-      "cpu_ns": 84661546,
+      "wall_ns": 208590972,
+      "cpu_ns": 207990036,
       "checksum": 780000,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -75,8 +75,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 84716433,
-      "cpu_ns": 84642363,
+      "wall_ns": 209292990,
+      "cpu_ns": 208545998,
       "checksum": 780000,
       "version": "rust-size",
       "gpu": "suspended",
@@ -85,8 +85,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 77106858,
-      "cpu_ns": 77074179,
+      "wall_ns": 203858141,
+      "cpu_ns": 203166675,
       "checksum": 780000,
       "version": "assembly",
       "gpu": "suspended",
@@ -95,8 +95,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 85851650,
-      "cpu_ns": 85849588,
+      "wall_ns": 209701222,
+      "cpu_ns": 209114872,
       "checksum": 780000,
       "version": "rust-size",
       "gpu": "suspended",
@@ -105,8 +105,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 85027687,
-      "cpu_ns": 85015616,
+      "wall_ns": 208636041,
+      "cpu_ns": 208011111,
       "checksum": 780000,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -115,8 +115,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 76814290,
-      "cpu_ns": 76812216,
+      "wall_ns": 202901716,
+      "cpu_ns": 202322608,
       "checksum": 780000,
       "version": "assembly",
       "gpu": "suspended",
@@ -125,8 +125,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 84807254,
-      "cpu_ns": 84804699,
+      "wall_ns": 210148794,
+      "cpu_ns": 209504826,
       "checksum": 780000,
       "version": "rust-size",
       "gpu": "suspended",
@@ -135,8 +135,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 84508051,
-      "cpu_ns": 84490510,
+      "wall_ns": 209319277,
+      "cpu_ns": 208693696,
       "checksum": 780000,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -145,8 +145,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 77226690,
-      "cpu_ns": 77174397,
+      "wall_ns": 203450126,
+      "cpu_ns": 202902552,
       "checksum": 780000,
       "version": "assembly",
       "gpu": "suspended",
@@ -155,8 +155,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 85275273,
-      "cpu_ns": 85258529,
+      "wall_ns": 209299393,
+      "cpu_ns": 208656549,
       "checksum": 780000,
       "version": "rust-size",
       "gpu": "suspended",
@@ -165,8 +165,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 77177359,
-      "cpu_ns": 77121762,
+      "wall_ns": 203372665,
+      "cpu_ns": 202765604,
       "checksum": 780000,
       "version": "assembly",
       "gpu": "suspended",
@@ -175,8 +175,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86209724,
-      "cpu_ns": 86206885,
+      "wall_ns": 210483741,
+      "cpu_ns": 209814220,
       "checksum": 780000,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -185,8 +185,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 77551506,
-      "cpu_ns": 77535360,
+      "wall_ns": 203830049,
+      "cpu_ns": 203284934,
       "checksum": 780000,
       "version": "assembly",
       "gpu": "suspended",
@@ -195,8 +195,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 84690911,
-      "cpu_ns": 84687627,
+      "wall_ns": 208415038,
+      "cpu_ns": 207868183,
       "checksum": 780000,
       "version": "rust-size",
       "gpu": "suspended",
@@ -205,8 +205,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 85768164,
-      "cpu_ns": 85665851,
+      "wall_ns": 209719536,
+      "cpu_ns": 209099668,
       "checksum": 780000,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -215,8 +215,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 84793477,
-      "cpu_ns": 84644805,
+      "wall_ns": 209614773,
+      "cpu_ns": 209020311,
       "checksum": 780000,
       "version": "rust-size",
       "gpu": "suspended",
@@ -225,8 +225,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 85159600,
-      "cpu_ns": 85091650,
+      "wall_ns": 208670374,
+      "cpu_ns": 208095692,
       "checksum": 780000,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -235,8 +235,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 77472889,
-      "cpu_ns": 77468999,
+      "wall_ns": 203565991,
+      "cpu_ns": 202994050,
       "checksum": 780000,
       "version": "assembly",
       "gpu": "suspended",
@@ -245,8 +245,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 85758713,
-      "cpu_ns": 85709162,
+      "wall_ns": 209118848,
+      "cpu_ns": 208565227,
       "checksum": 780000,
       "version": "rust-size",
       "gpu": "suspended",
@@ -255,8 +255,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 84751894,
-      "cpu_ns": 84737610,
+      "wall_ns": 209173833,
+      "cpu_ns": 208567134,
       "checksum": 780000,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -265,8 +265,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 76986417,
-      "cpu_ns": 76983285,
+      "wall_ns": 203569377,
+      "cpu_ns": 202786722,
       "checksum": 780000,
       "version": "assembly",
       "gpu": "suspended",
@@ -275,8 +275,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 85457732,
-      "cpu_ns": 85448084,
+      "wall_ns": 209003244,
+      "cpu_ns": 208379438,
       "checksum": 780000,
       "version": "rust-size",
       "gpu": "suspended",
@@ -285,8 +285,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 85798168,
-      "cpu_ns": 85724269,
+      "wall_ns": 209408229,
+      "cpu_ns": 208870027,
       "checksum": 780000,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -295,8 +295,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 77120553,
-      "cpu_ns": 77070946,
+      "wall_ns": 204196093,
+      "cpu_ns": 203596708,
       "checksum": 780000,
       "version": "assembly",
       "gpu": "suspended",
@@ -305,8 +305,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 85009910,
-      "cpu_ns": 85007226,
+      "wall_ns": 209700848,
+      "cpu_ns": 209090112,
       "checksum": 780000,
       "version": "rust-size",
       "gpu": "suspended",
@@ -315,8 +315,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 76964990,
-      "cpu_ns": 76962333,
+      "wall_ns": 203388148,
+      "cpu_ns": 202840019,
       "checksum": 780000,
       "version": "assembly",
       "gpu": "suspended",
@@ -325,8 +325,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 84377685,
-      "cpu_ns": 84375727,
+      "wall_ns": 209041819,
+      "cpu_ns": 208443720,
       "checksum": 780000,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -335,8 +335,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 76997077,
-      "cpu_ns": 76883280,
+      "wall_ns": 203114905,
+      "cpu_ns": 202524626,
       "checksum": 780000,
       "version": "assembly",
       "gpu": "suspended",
@@ -345,8 +345,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 84938272,
-      "cpu_ns": 84935836,
+      "wall_ns": 209676984,
+      "cpu_ns": 209039694,
       "checksum": 780000,
       "version": "rust-size",
       "gpu": "suspended",
@@ -355,8 +355,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 84872365,
-      "cpu_ns": 84869427,
+      "wall_ns": 209379588,
+      "cpu_ns": 208810544,
       "checksum": 780000,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -365,8 +365,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86718986,
-      "cpu_ns": 86705351,
+      "wall_ns": 213947934,
+      "cpu_ns": 213231037,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -375,8 +375,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86512994,
-      "cpu_ns": 86511015,
+      "wall_ns": 213990528,
+      "cpu_ns": 213390566,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "suspended",
@@ -385,8 +385,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 79621611,
-      "cpu_ns": 79565227,
+      "wall_ns": 206839469,
+      "cpu_ns": 206305159,
       "checksum": 0,
       "version": "assembly",
       "gpu": "suspended",
@@ -395,8 +395,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 79153747,
-      "cpu_ns": 79151584,
+      "wall_ns": 206556097,
+      "cpu_ns": 205966277,
       "checksum": 0,
       "version": "assembly",
       "gpu": "suspended",
@@ -405,8 +405,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 88650249,
-      "cpu_ns": 88629212,
+      "wall_ns": 213076144,
+      "cpu_ns": 212443380,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "suspended",
@@ -415,8 +415,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 102853377,
-      "cpu_ns": 102749089,
+      "wall_ns": 213964725,
+      "cpu_ns": 213347849,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -425,8 +425,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 92646384,
-      "cpu_ns": 92594048,
+      "wall_ns": 212716995,
+      "cpu_ns": 212141681,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "suspended",
@@ -435,8 +435,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87001987,
-      "cpu_ns": 86998826,
+      "wall_ns": 214416282,
+      "cpu_ns": 213797861,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -445,8 +445,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 79154319,
-      "cpu_ns": 79152183,
+      "wall_ns": 206419899,
+      "cpu_ns": 205846925,
       "checksum": 0,
       "version": "assembly",
       "gpu": "suspended",
@@ -455,8 +455,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 78973947,
-      "cpu_ns": 78971493,
+      "wall_ns": 209073430,
+      "cpu_ns": 208354716,
       "checksum": 0,
       "version": "assembly",
       "gpu": "suspended",
@@ -465,8 +465,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86533269,
-      "cpu_ns": 86530466,
+      "wall_ns": 214377405,
+      "cpu_ns": 213739556,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "suspended",
@@ -475,8 +475,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 89226521,
-      "cpu_ns": 89224236,
+      "wall_ns": 213420471,
+      "cpu_ns": 212829459,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -485,8 +485,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 80599711,
-      "cpu_ns": 80585698,
+      "wall_ns": 207413838,
+      "cpu_ns": 206801119,
       "checksum": 0,
       "version": "assembly",
       "gpu": "suspended",
@@ -495,8 +495,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 91332669,
-      "cpu_ns": 91329919,
+      "wall_ns": 212484678,
+      "cpu_ns": 211874042,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -505,8 +505,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87060077,
-      "cpu_ns": 87057460,
+      "wall_ns": 213009416,
+      "cpu_ns": 212337650,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "suspended",
@@ -515,8 +515,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 97925071,
-      "cpu_ns": 97660938,
+      "wall_ns": 213056192,
+      "cpu_ns": 212434495,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "suspended",
@@ -525,8 +525,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 96661343,
-      "cpu_ns": 96602031,
+      "wall_ns": 214006156,
+      "cpu_ns": 213408512,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -535,8 +535,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 92769970,
-      "cpu_ns": 92766471,
+      "wall_ns": 206616347,
+      "cpu_ns": 205976191,
       "checksum": 0,
       "version": "assembly",
       "gpu": "suspended",
@@ -545,8 +545,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 95616947,
-      "cpu_ns": 95612648,
+      "wall_ns": 214803513,
+      "cpu_ns": 213985959,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -555,8 +555,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 98980942,
-      "cpu_ns": 98978283,
+      "wall_ns": 208172541,
+      "cpu_ns": 207458246,
       "checksum": 0,
       "version": "assembly",
       "gpu": "suspended",
@@ -565,8 +565,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 90423888,
-      "cpu_ns": 90421385,
+      "wall_ns": 213708529,
+      "cpu_ns": 213117126,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "suspended",
@@ -575,8 +575,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 88100648,
-      "cpu_ns": 88097229,
+      "wall_ns": 213916279,
+      "cpu_ns": 213236844,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -585,8 +585,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87237123,
-      "cpu_ns": 87234943,
+      "wall_ns": 213156671,
+      "cpu_ns": 212573284,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "suspended",
@@ -595,8 +595,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 79053341,
-      "cpu_ns": 79037994,
+      "wall_ns": 206750448,
+      "cpu_ns": 206150953,
       "checksum": 0,
       "version": "assembly",
       "gpu": "suspended",
@@ -605,8 +605,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87416396,
-      "cpu_ns": 87412549,
+      "wall_ns": 213492743,
+      "cpu_ns": 212864381,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -615,8 +615,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86851661,
-      "cpu_ns": 86839960,
+      "wall_ns": 212373730,
+      "cpu_ns": 211761680,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "suspended",
@@ -625,8 +625,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 78877291,
-      "cpu_ns": 78848783,
+      "wall_ns": 207173067,
+      "cpu_ns": 206556863,
       "checksum": 0,
       "version": "assembly",
       "gpu": "suspended",
@@ -635,8 +635,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 80585271,
-      "cpu_ns": 80567902,
+      "wall_ns": 206338377,
+      "cpu_ns": 205746264,
       "checksum": 0,
       "version": "assembly",
       "gpu": "suspended",
@@ -645,8 +645,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87346447,
-      "cpu_ns": 87343053,
+      "wall_ns": 214451312,
+      "cpu_ns": 213697895,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -655,8 +655,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 88009112,
-      "cpu_ns": 87978372,
+      "wall_ns": 212716253,
+      "cpu_ns": 212059265,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "suspended",
@@ -665,8 +665,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 88883696,
-      "cpu_ns": 88881174,
+      "wall_ns": 213213445,
+      "cpu_ns": 212658353,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "suspended",
@@ -675,8 +675,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 94658130,
-      "cpu_ns": 94627024,
+      "wall_ns": 213661346,
+      "cpu_ns": 213025498,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "suspended",
@@ -685,8 +685,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 81577163,
-      "cpu_ns": 81573796,
+      "wall_ns": 206999025,
+      "cpu_ns": 206385334,
       "checksum": 0,
       "version": "assembly",
       "gpu": "suspended",
@@ -695,8 +695,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 88430442,
-      "cpu_ns": 88426504,
+      "wall_ns": 212806638,
+      "cpu_ns": 211975559,
       "checksum": 792000,
       "version": "rust-size",
       "gpu": "active",
@@ -705,8 +705,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 79294169,
-      "cpu_ns": 79279510,
+      "wall_ns": 205729479,
+      "cpu_ns": 205123950,
       "checksum": 792000,
       "version": "assembly",
       "gpu": "active",
@@ -715,8 +715,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87325173,
-      "cpu_ns": 87321427,
+      "wall_ns": 212818851,
+      "cpu_ns": 212112665,
       "checksum": 792000,
       "version": "rust-speed",
       "gpu": "active",
@@ -725,8 +725,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86967366,
-      "cpu_ns": 86965235,
+      "wall_ns": 211915694,
+      "cpu_ns": 211290824,
       "checksum": 792000,
       "version": "rust-speed",
       "gpu": "active",
@@ -735,8 +735,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 81799592,
-      "cpu_ns": 81769068,
+      "wall_ns": 204874453,
+      "cpu_ns": 204244178,
       "checksum": 792000,
       "version": "assembly",
       "gpu": "active",
@@ -745,8 +745,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86963500,
-      "cpu_ns": 86960015,
+      "wall_ns": 211967506,
+      "cpu_ns": 211151823,
       "checksum": 792000,
       "version": "rust-size",
       "gpu": "active",
@@ -755,8 +755,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 78049956,
-      "cpu_ns": 78047963,
+      "wall_ns": 206316304,
+      "cpu_ns": 205761799,
       "checksum": 792000,
       "version": "assembly",
       "gpu": "active",
@@ -765,8 +765,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86078708,
-      "cpu_ns": 86075784,
+      "wall_ns": 211129961,
+      "cpu_ns": 210479108,
       "checksum": 792000,
       "version": "rust-size",
       "gpu": "active",
@@ -775,8 +775,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86599178,
-      "cpu_ns": 86596052,
+      "wall_ns": 211310028,
+      "cpu_ns": 210618148,
       "checksum": 792000,
       "version": "rust-speed",
       "gpu": "active",
@@ -785,8 +785,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 78105983,
-      "cpu_ns": 78104104,
+      "wall_ns": 206381587,
+      "cpu_ns": 205740544,
       "checksum": 792000,
       "version": "assembly",
       "gpu": "active",
@@ -795,8 +795,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86590304,
-      "cpu_ns": 86588206,
+      "wall_ns": 213716339,
+      "cpu_ns": 212971001,
       "checksum": 792000,
       "version": "rust-size",
       "gpu": "active",
@@ -805,8 +805,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86245648,
-      "cpu_ns": 86241231,
+      "wall_ns": 212979155,
+      "cpu_ns": 212324404,
       "checksum": 792000,
       "version": "rust-speed",
       "gpu": "active",
@@ -815,8 +815,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 90610601,
-      "cpu_ns": 90607134,
+      "wall_ns": 212316512,
+      "cpu_ns": 211669260,
       "checksum": 792000,
       "version": "rust-size",
       "gpu": "active",
@@ -825,8 +825,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 97875412,
-      "cpu_ns": 97872668,
+      "wall_ns": 206373034,
+      "cpu_ns": 205700880,
       "checksum": 792000,
       "version": "assembly",
       "gpu": "active",
@@ -835,8 +835,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 99425529,
-      "cpu_ns": 99421936,
+      "wall_ns": 212772242,
+      "cpu_ns": 212054606,
       "checksum": 792000,
       "version": "rust-speed",
       "gpu": "active",
@@ -845,8 +845,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 94688149,
-      "cpu_ns": 94684565,
+      "wall_ns": 213678516,
+      "cpu_ns": 213012317,
       "checksum": 792000,
       "version": "rust-size",
       "gpu": "active",
@@ -855,8 +855,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 99605074,
-      "cpu_ns": 99602789,
+      "wall_ns": 207105490,
+      "cpu_ns": 206475440,
       "checksum": 792000,
       "version": "assembly",
       "gpu": "active",
@@ -865,8 +865,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 97858736,
-      "cpu_ns": 97798163,
+      "wall_ns": 212421321,
+      "cpu_ns": 211783672,
       "checksum": 792000,
       "version": "rust-speed",
       "gpu": "active",
@@ -875,8 +875,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 98740784,
-      "cpu_ns": 98736922,
+      "wall_ns": 211297544,
+      "cpu_ns": 210652869,
       "checksum": 792000,
       "version": "rust-size",
       "gpu": "active",
@@ -885,8 +885,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 91222340,
-      "cpu_ns": 91218210,
+      "wall_ns": 212184982,
+      "cpu_ns": 211457135,
       "checksum": 792000,
       "version": "rust-speed",
       "gpu": "active",
@@ -895,8 +895,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 83466654,
-      "cpu_ns": 83463172,
+      "wall_ns": 206730125,
+      "cpu_ns": 206100254,
       "checksum": 792000,
       "version": "assembly",
       "gpu": "active",
@@ -905,8 +905,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 98195677,
-      "cpu_ns": 98191209,
+      "wall_ns": 211501955,
+      "cpu_ns": 210795126,
       "checksum": 792000,
       "version": "rust-speed",
       "gpu": "active",
@@ -915,8 +915,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 83216922,
-      "cpu_ns": 83213498,
+      "wall_ns": 206334539,
+      "cpu_ns": 205701112,
       "checksum": 792000,
       "version": "assembly",
       "gpu": "active",
@@ -925,8 +925,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 93823047,
-      "cpu_ns": 93806386,
+      "wall_ns": 212083491,
+      "cpu_ns": 211430188,
       "checksum": 792000,
       "version": "rust-size",
       "gpu": "active",
@@ -935,8 +935,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 100673149,
-      "cpu_ns": 100668556,
+      "wall_ns": 213575532,
+      "cpu_ns": 212835760,
       "checksum": 792000,
       "version": "rust-size",
       "gpu": "active",
@@ -945,8 +945,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 93245683,
-      "cpu_ns": 93242585,
+      "wall_ns": 213143431,
+      "cpu_ns": 212476289,
       "checksum": 792000,
       "version": "rust-speed",
       "gpu": "active",
@@ -955,8 +955,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 89914999,
-      "cpu_ns": 89893970,
+      "wall_ns": 206088628,
+      "cpu_ns": 205522565,
       "checksum": 792000,
       "version": "assembly",
       "gpu": "active",
@@ -965,8 +965,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 88080026,
-      "cpu_ns": 88044197,
+      "wall_ns": 205104355,
+      "cpu_ns": 204488594,
       "checksum": 792000,
       "version": "assembly",
       "gpu": "active",
@@ -975,8 +975,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 95256951,
-      "cpu_ns": 95253626,
+      "wall_ns": 213060665,
+      "cpu_ns": 212413622,
       "checksum": 792000,
       "version": "rust-speed",
       "gpu": "active",
@@ -985,8 +985,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 96951986,
-      "cpu_ns": 96948916,
+      "wall_ns": 211733959,
+      "cpu_ns": 211034342,
       "checksum": 792000,
       "version": "rust-size",
       "gpu": "active",
@@ -995,8 +995,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 84623014,
-      "cpu_ns": 84620631,
+      "wall_ns": 206527379,
+      "cpu_ns": 205912896,
       "checksum": 792000,
       "version": "assembly",
       "gpu": "active",
@@ -1005,8 +1005,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 94303560,
-      "cpu_ns": 94298176,
+      "wall_ns": 212800943,
+      "cpu_ns": 212175379,
       "checksum": 792000,
       "version": "rust-speed",
       "gpu": "active",
@@ -1015,8 +1015,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 95815298,
-      "cpu_ns": 95813017,
+      "wall_ns": 213867923,
+      "cpu_ns": 213085811,
       "checksum": 792000,
       "version": "rust-size",
       "gpu": "active",
@@ -1025,8 +1025,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 95135658,
-      "cpu_ns": 95132504,
+      "wall_ns": 216667232,
+      "cpu_ns": 215955834,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "active",
@@ -1035,8 +1035,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 99519297,
-      "cpu_ns": 99497745,
+      "wall_ns": 217116125,
+      "cpu_ns": 216420366,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "active",
@@ -1045,8 +1045,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 89185408,
-      "cpu_ns": 89173480,
+      "wall_ns": 209740647,
+      "cpu_ns": 209148070,
       "checksum": 0,
       "version": "assembly",
       "gpu": "active",
@@ -1055,8 +1055,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 103361922,
-      "cpu_ns": 103333027,
+      "wall_ns": 217260509,
+      "cpu_ns": 216649465,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "active",
@@ -1065,8 +1065,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86736594,
-      "cpu_ns": 86681105,
+      "wall_ns": 209186627,
+      "cpu_ns": 208482800,
       "checksum": 0,
       "version": "assembly",
       "gpu": "active",
@@ -1075,8 +1075,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 101901439,
-      "cpu_ns": 101898199,
+      "wall_ns": 215932372,
+      "cpu_ns": 215263706,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "active",
@@ -1085,8 +1085,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 96748480,
-      "cpu_ns": 96744659,
+      "wall_ns": 209905307,
+      "cpu_ns": 209276415,
       "checksum": 0,
       "version": "assembly",
       "gpu": "active",
@@ -1095,8 +1095,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 99898131,
-      "cpu_ns": 99894972,
+      "wall_ns": 217160300,
+      "cpu_ns": 216468712,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "active",
@@ -1105,8 +1105,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 96140306,
-      "cpu_ns": 96136326,
+      "wall_ns": 217669267,
+      "cpu_ns": 216944342,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "active",
@@ -1115,8 +1115,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 98944964,
-      "cpu_ns": 98941392,
+      "wall_ns": 217234781,
+      "cpu_ns": 216465122,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "active",
@@ -1125,8 +1125,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86550988,
-      "cpu_ns": 86547854,
+      "wall_ns": 210961467,
+      "cpu_ns": 210293789,
       "checksum": 0,
       "version": "assembly",
       "gpu": "active",
@@ -1135,8 +1135,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 103022319,
-      "cpu_ns": 103002151,
+      "wall_ns": 218134868,
+      "cpu_ns": 217388282,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "active",
@@ -1145,8 +1145,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 95634506,
-      "cpu_ns": 95632100,
+      "wall_ns": 216510065,
+      "cpu_ns": 215888812,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "active",
@@ -1155,8 +1155,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 79057143,
-      "cpu_ns": 79048674,
+      "wall_ns": 210237200,
+      "cpu_ns": 209589317,
       "checksum": 0,
       "version": "assembly",
       "gpu": "active",
@@ -1165,8 +1165,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87549185,
-      "cpu_ns": 87527973,
+      "wall_ns": 217622068,
+      "cpu_ns": 216951044,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "active",
@@ -1175,8 +1175,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87609253,
-      "cpu_ns": 87607297,
+      "wall_ns": 218579134,
+      "cpu_ns": 217874497,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "active",
@@ -1185,8 +1185,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 79060897,
-      "cpu_ns": 79059525,
+      "wall_ns": 210721159,
+      "cpu_ns": 210070993,
       "checksum": 0,
       "version": "assembly",
       "gpu": "active",
@@ -1195,8 +1195,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87309226,
-      "cpu_ns": 87308032,
+      "wall_ns": 216838366,
+      "cpu_ns": 216120426,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "active",
@@ -1205,8 +1205,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86563624,
-      "cpu_ns": 86562165,
+      "wall_ns": 216987214,
+      "cpu_ns": 216084995,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "active",
@@ -1215,8 +1215,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87712911,
-      "cpu_ns": 87711073,
+      "wall_ns": 217848289,
+      "cpu_ns": 217154176,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "active",
@@ -1225,8 +1225,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 78941184,
-      "cpu_ns": 78916632,
+      "wall_ns": 210164551,
+      "cpu_ns": 209515350,
       "checksum": 0,
       "version": "assembly",
       "gpu": "active",
@@ -1235,8 +1235,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 79317093,
-      "cpu_ns": 79314360,
+      "wall_ns": 211028121,
+      "cpu_ns": 210391293,
       "checksum": 0,
       "version": "assembly",
       "gpu": "active",
@@ -1245,8 +1245,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86686939,
-      "cpu_ns": 86669580,
+      "wall_ns": 217362139,
+      "cpu_ns": 216716970,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "active",
@@ -1255,8 +1255,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87926155,
-      "cpu_ns": 87924338,
+      "wall_ns": 216768469,
+      "cpu_ns": 216043036,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "active",
@@ -1265,8 +1265,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87305176,
-      "cpu_ns": 87303431,
+      "wall_ns": 217056772,
+      "cpu_ns": 216385451,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "active",
@@ -1275,8 +1275,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 79235863,
-      "cpu_ns": 79219073,
+      "wall_ns": 209813505,
+      "cpu_ns": 209151599,
       "checksum": 0,
       "version": "assembly",
       "gpu": "active",
@@ -1285,8 +1285,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 88248871,
-      "cpu_ns": 88141741,
+      "wall_ns": 215479604,
+      "cpu_ns": 214838508,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "active",
@@ -1295,8 +1295,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 79569790,
-      "cpu_ns": 79566636,
+      "wall_ns": 209541576,
+      "cpu_ns": 208823743,
       "checksum": 0,
       "version": "assembly",
       "gpu": "active",
@@ -1305,8 +1305,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87570046,
-      "cpu_ns": 87553089,
+      "wall_ns": 216668540,
+      "cpu_ns": 216030652,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "active",
@@ -1315,8 +1315,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 86888033,
-      "cpu_ns": 86885814,
+      "wall_ns": 217613588,
+      "cpu_ns": 216914170,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "active",
@@ -1325,8 +1325,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 90223333,
-      "cpu_ns": 90221507,
+      "wall_ns": 215369305,
+      "cpu_ns": 214712533,
       "checksum": 0,
       "version": "rust-size",
       "gpu": "active",
@@ -1335,8 +1335,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 87096424,
-      "cpu_ns": 87093864,
+      "wall_ns": 216757701,
+      "cpu_ns": 216131949,
       "checksum": 0,
       "version": "rust-speed",
       "gpu": "active",
@@ -1345,8 +1345,8 @@
       "samples": 12000
     },
     {
-      "wall_ns": 78824039,
-      "cpu_ns": 78822296,
+      "wall_ns": 209196152,
+      "cpu_ns": 208546000,
       "checksum": 0,
       "version": "assembly",
       "gpu": "active",
@@ -1360,7 +1360,7 @@
       "mode": "startup",
       "repeat": 0,
       "samples": 1,
-      "wall_ns": 898951
+      "wall_ns": 1144285
     },
     {
       "version": "rust-size",
@@ -1368,7 +1368,7 @@
       "mode": "startup",
       "repeat": 0,
       "samples": 1,
-      "wall_ns": 756409
+      "wall_ns": 1023712
     },
     {
       "version": "assembly",
@@ -1376,7 +1376,7 @@
       "mode": "startup",
       "repeat": 0,
       "samples": 1,
-      "wall_ns": 598682
+      "wall_ns": 757980
     },
     {
       "version": "assembly",
@@ -1384,7 +1384,7 @@
       "mode": "startup",
       "repeat": 1,
       "samples": 1,
-      "wall_ns": 552704
+      "wall_ns": 746426
     },
     {
       "version": "rust-speed",
@@ -1392,7 +1392,7 @@
       "mode": "startup",
       "repeat": 1,
       "samples": 1,
-      "wall_ns": 687992
+      "wall_ns": 956157
     },
     {
       "version": "rust-size",
@@ -1400,7 +1400,7 @@
       "mode": "startup",
       "repeat": 1,
       "samples": 1,
-      "wall_ns": 678097
+      "wall_ns": 941778
     },
     {
       "version": "rust-size",
@@ -1408,7 +1408,7 @@
       "mode": "startup",
       "repeat": 2,
       "samples": 1,
-      "wall_ns": 689114
+      "wall_ns": 937470
     },
     {
       "version": "rust-speed",
@@ -1416,7 +1416,7 @@
       "mode": "startup",
       "repeat": 2,
       "samples": 1,
-      "wall_ns": 678990
+      "wall_ns": 987851
     },
     {
       "version": "assembly",
@@ -1424,7 +1424,7 @@
       "mode": "startup",
       "repeat": 2,
       "samples": 1,
-      "wall_ns": 579097
+      "wall_ns": 775135
     },
     {
       "version": "assembly",
@@ -1432,7 +1432,7 @@
       "mode": "startup",
       "repeat": 3,
       "samples": 1,
-      "wall_ns": 534357
+      "wall_ns": 731186
     },
     {
       "version": "rust-size",
@@ -1440,7 +1440,7 @@
       "mode": "startup",
       "repeat": 3,
       "samples": 1,
-      "wall_ns": 668309
+      "wall_ns": 932289
     },
     {
       "version": "rust-speed",
@@ -1448,7 +1448,7 @@
       "mode": "startup",
       "repeat": 3,
       "samples": 1,
-      "wall_ns": 675258
+      "wall_ns": 926418
     },
     {
       "version": "rust-speed",
@@ -1456,7 +1456,7 @@
       "mode": "startup",
       "repeat": 4,
       "samples": 1,
-      "wall_ns": 658474
+      "wall_ns": 922790
     },
     {
       "version": "rust-size",
@@ -1464,7 +1464,7 @@
       "mode": "startup",
       "repeat": 4,
       "samples": 1,
-      "wall_ns": 666401
+      "wall_ns": 935585
     },
     {
       "version": "assembly",
@@ -1472,7 +1472,7 @@
       "mode": "startup",
       "repeat": 4,
       "samples": 1,
-      "wall_ns": 547838
+      "wall_ns": 723270
     },
     {
       "version": "assembly",
@@ -1480,7 +1480,7 @@
       "mode": "startup",
       "repeat": 5,
       "samples": 1,
-      "wall_ns": 520720
+      "wall_ns": 721156
     },
     {
       "version": "rust-speed",
@@ -1488,7 +1488,7 @@
       "mode": "startup",
       "repeat": 5,
       "samples": 1,
-      "wall_ns": 669074
+      "wall_ns": 910536
     },
     {
       "version": "rust-size",
@@ -1496,7 +1496,7 @@
       "mode": "startup",
       "repeat": 5,
       "samples": 1,
-      "wall_ns": 679143
+      "wall_ns": 931257
     },
     {
       "version": "rust-speed",
@@ -1504,7 +1504,7 @@
       "mode": "startup",
       "repeat": 6,
       "samples": 1,
-      "wall_ns": 660119
+      "wall_ns": 963572
     },
     {
       "version": "rust-size",
@@ -1512,7 +1512,7 @@
       "mode": "startup",
       "repeat": 6,
       "samples": 1,
-      "wall_ns": 658403
+      "wall_ns": 914614
     },
     {
       "version": "assembly",
@@ -1520,7 +1520,7 @@
       "mode": "startup",
       "repeat": 6,
       "samples": 1,
-      "wall_ns": 564958
+      "wall_ns": 713110
     },
     {
       "version": "rust-size",
@@ -1528,7 +1528,7 @@
       "mode": "startup",
       "repeat": 7,
       "samples": 1,
-      "wall_ns": 671318
+      "wall_ns": 924534
     },
     {
       "version": "rust-speed",
@@ -1536,7 +1536,7 @@
       "mode": "startup",
       "repeat": 7,
       "samples": 1,
-      "wall_ns": 672206
+      "wall_ns": 911738
     },
     {
       "version": "assembly",
@@ -1544,7 +1544,7 @@
       "mode": "startup",
       "repeat": 7,
       "samples": 1,
-      "wall_ns": 541053
+      "wall_ns": 787068
     },
     {
       "version": "assembly",
@@ -1552,7 +1552,7 @@
       "mode": "startup",
       "repeat": 8,
       "samples": 1,
-      "wall_ns": 514455
+      "wall_ns": 709663
     },
     {
       "version": "rust-size",
@@ -1560,7 +1560,7 @@
       "mode": "startup",
       "repeat": 8,
       "samples": 1,
-      "wall_ns": 655738
+      "wall_ns": 986087
     },
     {
       "version": "rust-speed",
@@ -1568,7 +1568,7 @@
       "mode": "startup",
       "repeat": 8,
       "samples": 1,
-      "wall_ns": 689688
+      "wall_ns": 914554
     },
     {
       "version": "assembly",
@@ -1576,7 +1576,7 @@
       "mode": "startup",
       "repeat": 9,
       "samples": 1,
-      "wall_ns": 535380
+      "wall_ns": 762008
     },
     {
       "version": "rust-size",
@@ -1584,7 +1584,7 @@
       "mode": "startup",
       "repeat": 9,
       "samples": 1,
-      "wall_ns": 651630
+      "wall_ns": 911778
     },
     {
       "version": "rust-speed",
@@ -1592,7 +1592,7 @@
       "mode": "startup",
       "repeat": 9,
       "samples": 1,
-      "wall_ns": 665099
+      "wall_ns": 912600
     },
     {
       "version": "assembly",
@@ -1600,7 +1600,7 @@
       "mode": "startup",
       "repeat": 10,
       "samples": 1,
-      "wall_ns": 539532
+      "wall_ns": 704743
     },
     {
       "version": "rust-size",
@@ -1608,7 +1608,7 @@
       "mode": "startup",
       "repeat": 10,
       "samples": 1,
-      "wall_ns": 666565
+      "wall_ns": 919594
     },
     {
       "version": "rust-speed",
@@ -1616,7 +1616,7 @@
       "mode": "startup",
       "repeat": 10,
       "samples": 1,
-      "wall_ns": 900546
+      "wall_ns": 955556
     },
     {
       "version": "rust-speed",
@@ -1624,7 +1624,7 @@
       "mode": "startup",
       "repeat": 11,
       "samples": 1,
-      "wall_ns": 666746
+      "wall_ns": 912339
     },
     {
       "version": "assembly",
@@ -1632,7 +1632,7 @@
       "mode": "startup",
       "repeat": 11,
       "samples": 1,
-      "wall_ns": 533332
+      "wall_ns": 714953
     },
     {
       "version": "rust-size",
@@ -1640,7 +1640,7 @@
       "mode": "startup",
       "repeat": 11,
       "samples": 1,
-      "wall_ns": 660066
+      "wall_ns": 933852
     },
     {
       "version": "rust-speed",
@@ -1648,7 +1648,7 @@
       "mode": "startup",
       "repeat": 12,
       "samples": 1,
-      "wall_ns": 677051
+      "wall_ns": 961688
     },
     {
       "version": "rust-size",
@@ -1656,7 +1656,7 @@
       "mode": "startup",
       "repeat": 12,
       "samples": 1,
-      "wall_ns": 671887
+      "wall_ns": 923962
     },
     {
       "version": "assembly",
@@ -1664,7 +1664,7 @@
       "mode": "startup",
       "repeat": 12,
       "samples": 1,
-      "wall_ns": 541582
+      "wall_ns": 717539
     },
     {
       "version": "rust-size",
@@ -1672,7 +1672,7 @@
       "mode": "startup",
       "repeat": 13,
       "samples": 1,
-      "wall_ns": 665228
+      "wall_ns": 920686
     },
     {
       "version": "rust-speed",
@@ -1680,7 +1680,7 @@
       "mode": "startup",
       "repeat": 13,
       "samples": 1,
-      "wall_ns": 666957
+      "wall_ns": 899974
     },
     {
       "version": "assembly",
@@ -1688,7 +1688,7 @@
       "mode": "startup",
       "repeat": 13,
       "samples": 1,
-      "wall_ns": 537062
+      "wall_ns": 708852
     },
     {
       "version": "rust-size",
@@ -1696,7 +1696,7 @@
       "mode": "startup",
       "repeat": 14,
       "samples": 1,
-      "wall_ns": 663307
+      "wall_ns": 913381
     },
     {
       "version": "rust-speed",
@@ -1704,7 +1704,7 @@
       "mode": "startup",
       "repeat": 14,
       "samples": 1,
-      "wall_ns": 658318
+      "wall_ns": 904964
     },
     {
       "version": "assembly",
@@ -1712,7 +1712,7 @@
       "mode": "startup",
       "repeat": 14,
       "samples": 1,
-      "wall_ns": 597193
+      "wall_ns": 719623
     },
     {
       "version": "rust-size",
@@ -1720,7 +1720,7 @@
       "mode": "startup",
       "repeat": 15,
       "samples": 1,
-      "wall_ns": 657659
+      "wall_ns": 956377
     },
     {
       "version": "assembly",
@@ -1728,7 +1728,7 @@
       "mode": "startup",
       "repeat": 15,
       "samples": 1,
-      "wall_ns": 536242
+      "wall_ns": 719733
     },
     {
       "version": "rust-speed",
@@ -1736,7 +1736,7 @@
       "mode": "startup",
       "repeat": 15,
       "samples": 1,
-      "wall_ns": 661010
+      "wall_ns": 903101
     },
     {
       "version": "assembly",
@@ -1744,7 +1744,7 @@
       "mode": "startup",
       "repeat": 16,
       "samples": 1,
-      "wall_ns": 527326
+      "wall_ns": 704492
     },
     {
       "version": "rust-size",
@@ -1752,7 +1752,7 @@
       "mode": "startup",
       "repeat": 16,
       "samples": 1,
-      "wall_ns": 665725
+      "wall_ns": 915836
     },
     {
       "version": "rust-speed",
@@ -1760,7 +1760,7 @@
       "mode": "startup",
       "repeat": 16,
       "samples": 1,
-      "wall_ns": 680144
+      "wall_ns": 957891
     },
     {
       "version": "rust-size",
@@ -1768,7 +1768,7 @@
       "mode": "startup",
       "repeat": 17,
       "samples": 1,
-      "wall_ns": 670494
+      "wall_ns": 903000
     },
     {
       "version": "assembly",
@@ -1776,7 +1776,7 @@
       "mode": "startup",
       "repeat": 17,
       "samples": 1,
-      "wall_ns": 539672
+      "wall_ns": 719713
     },
     {
       "version": "rust-speed",
@@ -1784,7 +1784,7 @@
       "mode": "startup",
       "repeat": 17,
       "samples": 1,
-      "wall_ns": 654887
+      "wall_ns": 924233
     },
     {
       "version": "assembly",
@@ -1792,7 +1792,7 @@
       "mode": "startup",
       "repeat": 18,
       "samples": 1,
-      "wall_ns": 542046
+      "wall_ns": 758932
     },
     {
       "version": "rust-speed",
@@ -1800,7 +1800,7 @@
       "mode": "startup",
       "repeat": 18,
       "samples": 1,
-      "wall_ns": 659784
+      "wall_ns": 908010
     },
     {
       "version": "rust-size",
@@ -1808,7 +1808,7 @@
       "mode": "startup",
       "repeat": 18,
       "samples": 1,
-      "wall_ns": 673865
+      "wall_ns": 897239
     },
     {
       "version": "assembly",
@@ -1816,7 +1816,7 @@
       "mode": "startup",
       "repeat": 19,
       "samples": 1,
-      "wall_ns": 554418
+      "wall_ns": 713471
     },
     {
       "version": "rust-size",
@@ -1824,7 +1824,7 @@
       "mode": "startup",
       "repeat": 19,
       "samples": 1,
-      "wall_ns": 659535
+      "wall_ns": 924514
     },
     {
       "version": "rust-speed",
@@ -1832,7 +1832,7 @@
       "mode": "startup",
       "repeat": 19,
       "samples": 1,
-      "wall_ns": 661761
+      "wall_ns": 958632
     },
     {
       "version": "assembly",
@@ -1840,7 +1840,7 @@
       "mode": "startup",
       "repeat": 20,
       "samples": 1,
-      "wall_ns": 539967
+      "wall_ns": 714683
     },
     {
       "version": "rust-size",
@@ -1848,7 +1848,7 @@
       "mode": "startup",
       "repeat": 20,
       "samples": 1,
-      "wall_ns": 662288
+      "wall_ns": 905145
     },
     {
       "version": "rust-speed",
@@ -1856,7 +1856,7 @@
       "mode": "startup",
       "repeat": 20,
       "samples": 1,
-      "wall_ns": 672231
+      "wall_ns": 912960
     },
     {
       "version": "rust-size",
@@ -1864,7 +1864,7 @@
       "mode": "startup",
       "repeat": 21,
       "samples": 1,
-      "wall_ns": 693411
+      "wall_ns": 947941
     },
     {
       "version": "assembly",
@@ -1872,7 +1872,7 @@
       "mode": "startup",
       "repeat": 21,
       "samples": 1,
-      "wall_ns": 536300
+      "wall_ns": 709683
     },
     {
       "version": "rust-speed",
@@ -1880,7 +1880,7 @@
       "mode": "startup",
       "repeat": 21,
       "samples": 1,
-      "wall_ns": 667084
+      "wall_ns": 906287
     },
     {
       "version": "rust-size",
@@ -1888,7 +1888,7 @@
       "mode": "startup",
       "repeat": 22,
       "samples": 1,
-      "wall_ns": 669165
+      "wall_ns": 906518
     },
     {
       "version": "assembly",
@@ -1896,7 +1896,7 @@
       "mode": "startup",
       "repeat": 22,
       "samples": 1,
-      "wall_ns": 524969
+      "wall_ns": 712699
     },
     {
       "version": "rust-speed",
@@ -1904,7 +1904,7 @@
       "mode": "startup",
       "repeat": 22,
       "samples": 1,
-      "wall_ns": 651736
+      "wall_ns": 944504
     },
     {
       "version": "assembly",
@@ -1912,7 +1912,7 @@
       "mode": "startup",
       "repeat": 23,
       "samples": 1,
-      "wall_ns": 822894
+      "wall_ns": 717419
     },
     {
       "version": "rust-size",
@@ -1920,7 +1920,7 @@
       "mode": "startup",
       "repeat": 23,
       "samples": 1,
-      "wall_ns": 658588
+      "wall_ns": 898873
     },
     {
       "version": "rust-speed",
@@ -1928,7 +1928,7 @@
       "mode": "startup",
       "repeat": 23,
       "samples": 1,
-      "wall_ns": 668570
+      "wall_ns": 915526
     },
     {
       "version": "assembly",
@@ -1936,7 +1936,7 @@
       "mode": "startup",
       "repeat": 24,
       "samples": 1,
-      "wall_ns": 532655
+      "wall_ns": 697098
     },
     {
       "version": "rust-size",
@@ -1944,7 +1944,7 @@
       "mode": "startup",
       "repeat": 24,
       "samples": 1,
-      "wall_ns": 661444
+      "wall_ns": 945556
     },
     {
       "version": "rust-speed",
@@ -1952,7 +1952,7 @@
       "mode": "startup",
       "repeat": 24,
       "samples": 1,
-      "wall_ns": 663938
+      "wall_ns": 897900
     },
     {
       "version": "rust-speed",
@@ -1960,7 +1960,7 @@
       "mode": "startup",
       "repeat": 25,
       "samples": 1,
-      "wall_ns": 675139
+      "wall_ns": 895956
     },
     {
       "version": "rust-size",
@@ -1968,7 +1968,7 @@
       "mode": "startup",
       "repeat": 25,
       "samples": 1,
-      "wall_ns": 676871
+      "wall_ns": 916057
     },
     {
       "version": "assembly",
@@ -1976,7 +1976,7 @@
       "mode": "startup",
       "repeat": 25,
       "samples": 1,
-      "wall_ns": 539506
+      "wall_ns": 754433
     },
     {
       "version": "rust-speed",
@@ -1984,7 +1984,7 @@
       "mode": "startup",
       "repeat": 26,
       "samples": 1,
-      "wall_ns": 656937
+      "wall_ns": 899634
     },
     {
       "version": "assembly",
@@ -1992,7 +1992,7 @@
       "mode": "startup",
       "repeat": 26,
       "samples": 1,
-      "wall_ns": 527903
+      "wall_ns": 702969
     },
     {
       "version": "rust-size",
@@ -2000,7 +2000,7 @@
       "mode": "startup",
       "repeat": 26,
       "samples": 1,
-      "wall_ns": 668667
+      "wall_ns": 885857
     },
     {
       "version": "rust-speed",
@@ -2008,7 +2008,7 @@
       "mode": "startup",
       "repeat": 27,
       "samples": 1,
-      "wall_ns": 760358
+      "wall_ns": 910646
     },
     {
       "version": "assembly",
@@ -2016,7 +2016,7 @@
       "mode": "startup",
       "repeat": 27,
       "samples": 1,
-      "wall_ns": 543548
+      "wall_ns": 747348
     },
     {
       "version": "rust-size",
@@ -2024,7 +2024,7 @@
       "mode": "startup",
       "repeat": 27,
       "samples": 1,
-      "wall_ns": 661775
+      "wall_ns": 914924
     },
     {
       "version": "assembly",
@@ -2032,7 +2032,7 @@
       "mode": "startup",
       "repeat": 28,
       "samples": 1,
-      "wall_ns": 546727
+      "wall_ns": 709032
     },
     {
       "version": "rust-size",
@@ -2040,7 +2040,7 @@
       "mode": "startup",
       "repeat": 28,
       "samples": 1,
-      "wall_ns": 659121
+      "wall_ns": 929945
     },
     {
       "version": "rust-speed",
@@ -2048,7 +2048,7 @@
       "mode": "startup",
       "repeat": 28,
       "samples": 1,
-      "wall_ns": 662538
+      "wall_ns": 949434
     },
     {
       "version": "rust-size",
@@ -2056,7 +2056,7 @@
       "mode": "startup",
       "repeat": 29,
       "samples": 1,
-      "wall_ns": 669717
+      "wall_ns": 914103
     },
     {
       "version": "assembly",
@@ -2064,7 +2064,7 @@
       "mode": "startup",
       "repeat": 29,
       "samples": 1,
-      "wall_ns": 532236
+      "wall_ns": 696907
     },
     {
       "version": "rust-speed",
@@ -2072,7 +2072,7 @@
       "mode": "startup",
       "repeat": 29,
       "samples": 1,
-      "wall_ns": 659020
+      "wall_ns": 893762
     },
     {
       "version": "rust-size",
@@ -2080,7 +2080,7 @@
       "mode": "startup",
       "repeat": 30,
       "samples": 1,
-      "wall_ns": 660522
+      "wall_ns": 902951
     },
     {
       "version": "assembly",
@@ -2088,7 +2088,7 @@
       "mode": "startup",
       "repeat": 30,
       "samples": 1,
-      "wall_ns": 537454
+      "wall_ns": 751777
     },
     {
       "version": "rust-speed",
@@ -2096,7 +2096,7 @@
       "mode": "startup",
       "repeat": 30,
       "samples": 1,
-      "wall_ns": 670856
+      "wall_ns": 901487
     },
     {
       "version": "assembly",
@@ -2104,7 +2104,7 @@
       "mode": "startup",
       "repeat": 31,
       "samples": 1,
-      "wall_ns": 553224
+      "wall_ns": 719803
     },
     {
       "version": "rust-size",
@@ -2112,7 +2112,7 @@
       "mode": "startup",
       "repeat": 31,
       "samples": 1,
-      "wall_ns": 658101
+      "wall_ns": 910966
     },
     {
       "version": "rust-speed",
@@ -2120,7 +2120,7 @@
       "mode": "startup",
       "repeat": 31,
       "samples": 1,
-      "wall_ns": 666158
+      "wall_ns": 931006
     },
     {
       "version": "rust-size",
@@ -2128,7 +2128,7 @@
       "mode": "startup",
       "repeat": 32,
       "samples": 1,
-      "wall_ns": 686377
+      "wall_ns": 894503
     },
     {
       "version": "assembly",
@@ -2136,7 +2136,7 @@
       "mode": "startup",
       "repeat": 32,
       "samples": 1,
-      "wall_ns": 537013
+      "wall_ns": 698901
     },
     {
       "version": "rust-speed",
@@ -2144,7 +2144,7 @@
       "mode": "startup",
       "repeat": 32,
       "samples": 1,
-      "wall_ns": 655028
+      "wall_ns": 898783
     },
     {
       "version": "rust-speed",
@@ -2152,7 +2152,7 @@
       "mode": "startup",
       "repeat": 33,
       "samples": 1,
-      "wall_ns": 703200
+      "wall_ns": 914543
     },
     {
       "version": "rust-size",
@@ -2160,7 +2160,7 @@
       "mode": "startup",
       "repeat": 33,
       "samples": 1,
-      "wall_ns": 667745
+      "wall_ns": 935887
     },
     {
       "version": "assembly",
@@ -2168,7 +2168,7 @@
       "mode": "startup",
       "repeat": 33,
       "samples": 1,
-      "wall_ns": 537047
+      "wall_ns": 718691
     },
     {
       "version": "rust-size",
@@ -2176,7 +2176,7 @@
       "mode": "startup",
       "repeat": 34,
       "samples": 1,
-      "wall_ns": 667883
+      "wall_ns": 892740
     },
     {
       "version": "rust-speed",
@@ -2184,7 +2184,7 @@
       "mode": "startup",
       "repeat": 34,
       "samples": 1,
-      "wall_ns": 659005
+      "wall_ns": 903402
     },
     {
       "version": "assembly",
@@ -2192,7 +2192,7 @@
       "mode": "startup",
       "repeat": 34,
       "samples": 1,
-      "wall_ns": 529084
+      "wall_ns": 689462
     },
     {
       "version": "assembly",
@@ -2200,7 +2200,7 @@
       "mode": "startup",
       "repeat": 35,
       "samples": 1,
-      "wall_ns": 826086
+      "wall_ns": 728050
     },
     {
       "version": "rust-size",
@@ -2208,7 +2208,7 @@
       "mode": "startup",
       "repeat": 35,
       "samples": 1,
-      "wall_ns": 689750
+      "wall_ns": 948061
     },
     {
       "version": "rust-speed",
@@ -2216,7 +2216,7 @@
       "mode": "startup",
       "repeat": 35,
       "samples": 1,
-      "wall_ns": 676064
+      "wall_ns": 893912
     },
     {
       "version": "rust-speed",
@@ -2224,7 +2224,7 @@
       "mode": "startup",
       "repeat": 36,
       "samples": 1,
-      "wall_ns": 666795
+      "wall_ns": 888492
     },
     {
       "version": "assembly",
@@ -2232,7 +2232,7 @@
       "mode": "startup",
       "repeat": 36,
       "samples": 1,
-      "wall_ns": 539192
+      "wall_ns": 745645
     },
     {
       "version": "rust-size",
@@ -2240,7 +2240,7 @@
       "mode": "startup",
       "repeat": 36,
       "samples": 1,
-      "wall_ns": 654922
+      "wall_ns": 895195
     },
     {
       "version": "rust-speed",
@@ -2248,7 +2248,7 @@
       "mode": "startup",
       "repeat": 37,
       "samples": 1,
-      "wall_ns": 687365
+      "wall_ns": 897169
     },
     {
       "version": "rust-size",
@@ -2256,7 +2256,7 @@
       "mode": "startup",
       "repeat": 37,
       "samples": 1,
-      "wall_ns": 682072
+      "wall_ns": 898111
     },
     {
       "version": "assembly",
@@ -2264,7 +2264,7 @@
       "mode": "startup",
       "repeat": 37,
       "samples": 1,
-      "wall_ns": 533357
+      "wall_ns": 697759
     },
     {
       "version": "rust-speed",
@@ -2272,7 +2272,7 @@
       "mode": "startup",
       "repeat": 38,
       "samples": 1,
-      "wall_ns": 691598
+      "wall_ns": 939574
     },
     {
       "version": "assembly",
@@ -2280,7 +2280,7 @@
       "mode": "startup",
       "repeat": 38,
       "samples": 1,
-      "wall_ns": 535018
+      "wall_ns": 703421
     },
     {
       "version": "rust-size",
@@ -2288,7 +2288,7 @@
       "mode": "startup",
       "repeat": 38,
       "samples": 1,
-      "wall_ns": 683742
+      "wall_ns": 889453
     },
     {
       "version": "rust-size",
@@ -2296,7 +2296,7 @@
       "mode": "startup",
       "repeat": 39,
       "samples": 1,
-      "wall_ns": 745290
+      "wall_ns": 907179
     },
     {
       "version": "rust-speed",
@@ -2304,7 +2304,7 @@
       "mode": "startup",
       "repeat": 39,
       "samples": 1,
-      "wall_ns": 665471
+      "wall_ns": 931257
     },
     {
       "version": "assembly",
@@ -2312,7 +2312,7 @@
       "mode": "startup",
       "repeat": 39,
       "samples": 1,
-      "wall_ns": 532871
+      "wall_ns": 688340
     },
     {
       "version": "rust-size",
@@ -2320,7 +2320,7 @@
       "mode": "startup",
       "repeat": 40,
       "samples": 1,
-      "wall_ns": 655873
+      "wall_ns": 894284
     },
     {
       "version": "assembly",
@@ -2328,7 +2328,7 @@
       "mode": "startup",
       "repeat": 40,
       "samples": 1,
-      "wall_ns": 522991
+      "wall_ns": 692398
     },
     {
       "version": "rust-speed",
@@ -2336,7 +2336,7 @@
       "mode": "startup",
       "repeat": 40,
       "samples": 1,
-      "wall_ns": 665634
+      "wall_ns": 897490
     },
     {
       "version": "rust-speed",
@@ -2344,7 +2344,7 @@
       "mode": "startup",
       "repeat": 41,
       "samples": 1,
-      "wall_ns": 680870
+      "wall_ns": 935185
     },
     {
       "version": "rust-size",
@@ -2352,7 +2352,7 @@
       "mode": "startup",
       "repeat": 41,
       "samples": 1,
-      "wall_ns": 657573
+      "wall_ns": 906006
     },
     {
       "version": "assembly",
@@ -2360,7 +2360,7 @@
       "mode": "startup",
       "repeat": 41,
       "samples": 1,
-      "wall_ns": 525076
+      "wall_ns": 703631
     },
     {
       "version": "rust-size",
@@ -2368,7 +2368,7 @@
       "mode": "startup",
       "repeat": 42,
       "samples": 1,
-      "wall_ns": 675152
+      "wall_ns": 894453
     },
     {
       "version": "rust-speed",
@@ -2376,7 +2376,7 @@
       "mode": "startup",
       "repeat": 42,
       "samples": 1,
-      "wall_ns": 676171
+      "wall_ns": 884303
     },
     {
       "version": "assembly",
@@ -2384,7 +2384,7 @@
       "mode": "startup",
       "repeat": 42,
       "samples": 1,
-      "wall_ns": 535430
+      "wall_ns": 731437
     },
     {
       "version": "rust-speed",
@@ -2392,7 +2392,7 @@
       "mode": "startup",
       "repeat": 43,
       "samples": 1,
-      "wall_ns": 685100
+      "wall_ns": 888762
     },
     {
       "version": "rust-size",
@@ -2400,7 +2400,7 @@
       "mode": "startup",
       "repeat": 43,
       "samples": 1,
-      "wall_ns": 676152
+      "wall_ns": 883832
     },
     {
       "version": "assembly",
@@ -2408,7 +2408,7 @@
       "mode": "startup",
       "repeat": 43,
       "samples": 1,
-      "wall_ns": 526144
+      "wall_ns": 702739
     },
     {
       "version": "rust-size",
@@ -2416,7 +2416,7 @@
       "mode": "startup",
       "repeat": 44,
       "samples": 1,
-      "wall_ns": 669663
+      "wall_ns": 930255
     },
     {
       "version": "assembly",
@@ -2424,7 +2424,7 @@
       "mode": "startup",
       "repeat": 44,
       "samples": 1,
-      "wall_ns": 534606
+      "wall_ns": 691506
     },
     {
       "version": "rust-speed",
@@ -2432,7 +2432,7 @@
       "mode": "startup",
       "repeat": 44,
       "samples": 1,
-      "wall_ns": 653491
+      "wall_ns": 891358
     },
     {
       "version": "assembly",
@@ -2440,7 +2440,7 @@
       "mode": "startup",
       "repeat": 45,
       "samples": 1,
-      "wall_ns": 525816
+      "wall_ns": 685044
     },
     {
       "version": "rust-speed",
@@ -2448,7 +2448,7 @@
       "mode": "startup",
       "repeat": 45,
       "samples": 1,
-      "wall_ns": 675743
+      "wall_ns": 898251
     },
     {
       "version": "rust-size",
@@ -2456,7 +2456,7 @@
       "mode": "startup",
       "repeat": 45,
       "samples": 1,
-      "wall_ns": 672052
+      "wall_ns": 930686
     },
     {
       "version": "rust-size",
@@ -2464,7 +2464,7 @@
       "mode": "startup",
       "repeat": 46,
       "samples": 1,
-      "wall_ns": 661240
+      "wall_ns": 896117
     },
     {
       "version": "rust-speed",
@@ -2472,7 +2472,7 @@
       "mode": "startup",
       "repeat": 46,
       "samples": 1,
-      "wall_ns": 646623
+      "wall_ns": 882479
     },
     {
       "version": "assembly",
@@ -2480,7 +2480,7 @@
       "mode": "startup",
       "repeat": 46,
       "samples": 1,
-      "wall_ns": 529233
+      "wall_ns": 690464
     },
     {
       "version": "assembly",
@@ -2488,7 +2488,7 @@
       "mode": "startup",
       "repeat": 47,
       "samples": 1,
-      "wall_ns": 525569
+      "wall_ns": 709282
     },
     {
       "version": "rust-size",
@@ -2496,7 +2496,7 @@
       "mode": "startup",
       "repeat": 47,
       "samples": 1,
-      "wall_ns": 942475
+      "wall_ns": 925505
     },
     {
       "version": "rust-speed",
@@ -2504,7 +2504,7 @@
       "mode": "startup",
       "repeat": 47,
       "samples": 1,
-      "wall_ns": 658149
+      "wall_ns": 890656
     },
     {
       "version": "assembly",
@@ -2512,7 +2512,7 @@
       "mode": "startup",
       "repeat": 48,
       "samples": 1,
-      "wall_ns": 535205
+      "wall_ns": 689081
     },
     {
       "version": "rust-speed",
@@ -2520,7 +2520,7 @@
       "mode": "startup",
       "repeat": 48,
       "samples": 1,
-      "wall_ns": 667328
+      "wall_ns": 898442
     },
     {
       "version": "rust-size",
@@ -2528,7 +2528,7 @@
       "mode": "startup",
       "repeat": 48,
       "samples": 1,
-      "wall_ns": 672167
+      "wall_ns": 927860
     },
     {
       "version": "assembly",
@@ -2536,7 +2536,7 @@
       "mode": "startup",
       "repeat": 49,
       "samples": 1,
-      "wall_ns": 548144
+      "wall_ns": 689322
     },
     {
       "version": "rust-speed",
@@ -2544,7 +2544,7 @@
       "mode": "startup",
       "repeat": 49,
       "samples": 1,
-      "wall_ns": 653028
+      "wall_ns": 885686
     },
     {
       "version": "rust-size",
@@ -2552,7 +2552,7 @@
       "mode": "startup",
       "repeat": 49,
       "samples": 1,
-      "wall_ns": 656903
+      "wall_ns": 893832
     },
     {
       "version": "rust-size",
@@ -2560,7 +2560,7 @@
       "mode": "startup",
       "repeat": 50,
       "samples": 1,
-      "wall_ns": 658984
+      "wall_ns": 890506
     },
     {
       "version": "rust-speed",
@@ -2568,7 +2568,7 @@
       "mode": "startup",
       "repeat": 50,
       "samples": 1,
-      "wall_ns": 671562
+      "wall_ns": 926588
     },
     {
       "version": "assembly",
@@ -2576,7 +2576,7 @@
       "mode": "startup",
       "repeat": 50,
       "samples": 1,
-      "wall_ns": 541492
+      "wall_ns": 697178
     },
     {
       "version": "rust-size",
@@ -2584,7 +2584,7 @@
       "mode": "startup",
       "repeat": 51,
       "samples": 1,
-      "wall_ns": 758575
+      "wall_ns": 887359
     },
     {
       "version": "rust-speed",
@@ -2592,7 +2592,7 @@
       "mode": "startup",
       "repeat": 51,
       "samples": 1,
-      "wall_ns": 670706
+      "wall_ns": 892630
     },
     {
       "version": "assembly",
@@ -2600,7 +2600,7 @@
       "mode": "startup",
       "repeat": 51,
       "samples": 1,
-      "wall_ns": 530382
+      "wall_ns": 688330
     },
     {
       "version": "rust-speed",
@@ -2608,7 +2608,7 @@
       "mode": "startup",
       "repeat": 52,
       "samples": 1,
-      "wall_ns": 663400
+      "wall_ns": 920185
     },
     {
       "version": "assembly",
@@ -2616,7 +2616,7 @@
       "mode": "startup",
       "repeat": 52,
       "samples": 1,
-      "wall_ns": 535060
+      "wall_ns": 709462
     },
     {
       "version": "rust-size",
@@ -2624,7 +2624,7 @@
       "mode": "startup",
       "repeat": 52,
       "samples": 1,
-      "wall_ns": 655467
+      "wall_ns": 885856
     },
     {
       "version": "rust-size",
@@ -2632,7 +2632,7 @@
       "mode": "startup",
       "repeat": 53,
       "samples": 1,
-      "wall_ns": 648178
+      "wall_ns": 895736
     },
     {
       "version": "assembly",
@@ -2640,7 +2640,7 @@
       "mode": "startup",
       "repeat": 53,
       "samples": 1,
-      "wall_ns": 557694
+      "wall_ns": 735395
     },
     {
       "version": "rust-speed",
@@ -2648,7 +2648,7 @@
       "mode": "startup",
       "repeat": 53,
       "samples": 1,
-      "wall_ns": 670166
+      "wall_ns": 898361
     },
     {
       "version": "rust-size",
@@ -2656,7 +2656,7 @@
       "mode": "startup",
       "repeat": 54,
       "samples": 1,
-      "wall_ns": 664089
+      "wall_ns": 878071
     },
     {
       "version": "assembly",
@@ -2664,7 +2664,7 @@
       "mode": "startup",
       "repeat": 54,
       "samples": 1,
-      "wall_ns": 528665
+      "wall_ns": 694012
     },
     {
       "version": "rust-speed",
@@ -2672,7 +2672,7 @@
       "mode": "startup",
       "repeat": 54,
       "samples": 1,
-      "wall_ns": 655117
+      "wall_ns": 894113
     }
   ]
 }
